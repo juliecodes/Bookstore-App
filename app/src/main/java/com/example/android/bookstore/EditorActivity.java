@@ -35,27 +35,28 @@ import com.example.android.bookstore.data.BookContract.BookEntry;
 import com.example.android.bookstore.data.BookDbHelper;
 
 /**
- * Allows user to create a new pet or edit an existing one.
+ * Allows user to create a new book or edit an existing one.
  */
 public class EditorActivity extends AppCompatActivity {
 
-    /** EditText field to enter the pet's name */
+    /** EditText field to enter the book's name */
     private EditText mNameEditText;
 
-    /** EditText field to enter the pet's breed */
-    private EditText mBreedEditText;
+    /** EditText field to enter the book's price */
+    private EditText mPriceEditText;
 
-    /** EditText field to enter the pet's weight */
-    private EditText mWeightEditText;
+    /** EditText field to enter the book's quantity */
+    private EditText mQuantityEditText;
 
-    /** EditText field to enter the pet's gender */
-    private Spinner mGenderSpinner;
+    /** EditText field to enter the book's supplier name */
+    private EditText mSupplierNameEditText;
 
-    /**
-     * Gender of the pet. The possible values are:
-     * 0 for unknown gender, 1 for male, 2 for female.
-     */
-    private int mGender = 0;
+    /** EditText field to enter the book's supplier phone */
+    private EditText mSupplierPhoneEditText;
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,59 +64,27 @@ public class EditorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_editor);
 
         // Find all relevant views that we will need to read user input from
-        mNameEditText = (EditText) findViewById(R.id.edit_pet_name);
-        mBreedEditText = (EditText) findViewById(R.id.edit_pet_breed);
-        mWeightEditText = (EditText) findViewById(R.id.edit_pet_weight);
-        mGenderSpinner = (Spinner) findViewById(R.id.spinner_gender);
+        mNameEditText = (EditText) findViewById(R.id.edit_product_name);
+        mPriceEditText = (EditText) findViewById(R.id.edit_book_price);
+        mQuantityEditText = (EditText) findViewById(R.id.edit_quantity);
 
-        setupSpinner();
+        mSupplierNameEditText = (EditText) findViewById(R.id.edit_supplier_name);
+        mSupplierPhoneEditText = (EditText) findViewById(R.id.edit_supplier_phone);
+
+
+
+
     }
 
-    /**
-     * Setup the dropdown spinner that allows the user to select the gender of the pet.
-     */
-    private void setupSpinner() {
-        // Create adapter for spinner. The list options are from the String array it will use
-        // the spinner will use the default layout
-        ArrayAdapter genderSpinnerAdapter = ArrayAdapter.createFromResource(this,
-                R.array.array_gender_options, android.R.layout.simple_spinner_item);
 
-        // Specify dropdown layout style - simple list view with 1 item per line
-        genderSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
 
-        // Apply the adapter to the spinner
-        mGenderSpinner.setAdapter(genderSpinnerAdapter);
-
-        // Set the integer mSelected to the constant values
-        mGenderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selection = (String) parent.getItemAtPosition(position);
-                if (!TextUtils.isEmpty(selection)) {
-                    if (selection.equals(getString(R.string.gender_male))) {
-                        mGender = BookEntry.GENDER_MALE; // Male
-                    } else if (selection.equals(getString(R.string.gender_female))) {
-                        mGender = BookEntry.GENDER_FEMALE; // Female
-                    } else {
-                        mGender = BookEntry.GENDER_UNKNOWN; // Unknown
-                    }
-                }
-            }
-
-            // Because AdapterView is an abstract class, onNothingSelected must be defined
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                mGender = 0; // Unknown
-            }
-        });
-    }
-
-    private void insertPet() {
+    private void insertBook() {
         String nameString = mNameEditText.getText().toString().trim();
-        String breedString = mBreedEditText.getText().toString().trim();
-        String weightString = mWeightEditText.getText().toString().trim();
-        String genderString = mGenderSpinner.getSelectedItem().toString();
-int weight = Integer.parseInt(weightString);
+        String priceString = mPriceEditText.getText().toString().trim();
+        String quantityString = mQuantityEditText.getText().toString().trim();
+        String supplierNameString = mSupplierNameEditText.getText().toString().trim();
+        String supplierPhoneString = mSupplierPhoneEditText.getText().toString().trim();
+
 
         BookDbHelper mDbHelper = new BookDbHelper(this);
 
@@ -125,10 +94,11 @@ int weight = Integer.parseInt(weightString);
         // Create a ContentValues object where column names are the keys,
         // and Toto's pet attributes are the values.
          ContentValues values = new ContentValues();
-         values.put(BookEntry.COLUMN_PET_NAME, nameString);
-         values.put(BookEntry.COLUMN_PET_BREED, breedString);
-        values.put(BookEntry.COLUMN_PET_GENDER, mGender);
-         values.put(BookEntry.COLUMN_PET_WEIGHT, weight);
+         values.put(BookEntry.COLUMN_BOOK_PRODUCT_NAME, nameString);
+         values.put(BookEntry.COLUMN_BOOK_PRICE, priceString);
+        values.put(BookEntry.COLUMN_BOOK_QUANTITY, quantityString);
+         values.put(BookEntry.COLUMN_BOOK_SUPPLIER_NAME, supplierNameString);
+        values.put(BookEntry.COLUMN_BOOK_SUPPLIER_PHONE, supplierPhoneString);
         // Insert a new row for Toto in the database, returning the ID of that new row.
         // The first argument for db.insert() is the bookstore table name.
         // The second argument provides the name of a column in which the framework
@@ -139,9 +109,9 @@ int weight = Integer.parseInt(weightString);
          long newRowId = db.insert(BookEntry.TABLE_NAME, null, values);
 
          if(newRowId == -1) {
-             Toast.makeText(this, "Error with saving pet", Toast.LENGTH_SHORT).show();
+             Toast.makeText(this, "Error with saving book", Toast.LENGTH_SHORT).show();
          } else {
-             Toast.makeText(this, "Pet saved with row id: " + newRowId, Toast.LENGTH_SHORT).show();
+             Toast.makeText(this, "Book saved with row id: " + newRowId, Toast.LENGTH_SHORT).show();
          }
 
     }
@@ -162,7 +132,7 @@ int weight = Integer.parseInt(weightString);
             // Respond to a click on the "Save" menu option
             case R.id.action_save:
 
-                insertPet();
+                insertBook();
                 finish();
 
 

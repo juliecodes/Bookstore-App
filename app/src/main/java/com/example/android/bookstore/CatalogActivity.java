@@ -68,10 +68,11 @@ public class CatalogActivity extends AppCompatActivity {
 
         String[] projection = {
                 BookEntry._ID,
-                BookEntry.COLUMN_PET_NAME,
-                BookEntry.COLUMN_PET_BREED,
-                BookEntry.COLUMN_PET_GENDER,
-                BookEntry.COLUMN_PET_WEIGHT
+                BookEntry.COLUMN_BOOK_PRODUCT_NAME,
+                BookEntry.COLUMN_BOOK_PRICE,
+                BookEntry.COLUMN_BOOK_QUANTITY,
+                BookEntry.COLUMN_BOOK_SUPPLIER_NAME,
+                BookEntry.COLUMN_BOOK_SUPPLIER_PHONE
         };
 
         Cursor cursor = db.query(
@@ -99,31 +100,35 @@ public class CatalogActivity extends AppCompatActivity {
 
             displayView.setText("The books table contains " + cursor.getCount() + " books.\n\n");
             displayView.append(BookEntry._ID + " - " +
-                    BookEntry.COLUMN_PET_NAME + " - " +
-                    BookEntry.COLUMN_PET_BREED + " - " +
-                    BookEntry.COLUMN_PET_GENDER + " - " +
-                    BookEntry.COLUMN_PET_WEIGHT + "\n");
+                    BookEntry.COLUMN_BOOK_PRODUCT_NAME + " - " +
+                    BookEntry.COLUMN_BOOK_PRICE + " - " +
+                    BookEntry.COLUMN_BOOK_QUANTITY + " - " +
+                    BookEntry.COLUMN_BOOK_SUPPLIER_NAME + " - " +
+                    BookEntry.COLUMN_BOOK_SUPPLIER_PHONE + "\n");
             // Figure out the index of each column
             int idColumnIndex = cursor.getColumnIndex(BookEntry._ID);
-            int nameColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_PET_NAME);
-            int breedColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_PET_BREED);
-            int genderColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_PET_GENDER);
-            int weightColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_PET_WEIGHT);
+            int nameColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_PRODUCT_NAME);
+            int priceColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_PRICE);
+            int quantityColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_QUANTITY);
+            int supplierNameColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_SUPPLIER_NAME);
+            int supplierPhoneColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_SUPPLIER_PHONE);
             // Iterate through all the returned rows in the cursor
             while (cursor.moveToNext()) {
                 // Use that index to extract the String or Int value of the word
                 // at the current row the cursor is on.
                 int currentID = cursor.getInt(idColumnIndex);
                 String currentName = cursor.getString(nameColumnIndex);
-                String currentBreed = cursor.getString(breedColumnIndex);
-                int currentGender = cursor.getInt(genderColumnIndex);
-                int currentWeight = cursor.getInt(weightColumnIndex);
+                String currentPrice = cursor.getString(priceColumnIndex);
+                int currentQuantity = cursor.getInt(quantityColumnIndex);
+                int currentSupplierName = cursor.getInt(supplierNameColumnIndex);
+                int currentSupplierPhone = cursor.getInt(supplierPhoneColumnIndex);
                 // Display the values from each column of the current row in the cursor in the TextView
                 displayView.append(("\n" + currentID + " - " +
                         currentName + " - " +
-                        currentBreed + " - " +
-                        currentGender + " - " +
-                        currentWeight));
+                        currentPrice + " - " +
+                        currentQuantity + " - " +
+                        currentSupplierName + " - " +
+                        currentSupplierPhone));
             }
 
 

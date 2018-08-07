@@ -15,21 +15,16 @@ public class BookContract {
 
 
         // Table name
-        public static final String TABLE_NAME = "bookstore";
+        public static final String TABLE_NAME = "books";
 
         public static final String _ID = BaseColumns._ID;
-        public static final String COLUMN_PET_NAME = "name";
-        public static final String COLUMN_PET_BREED = "breed"; // breed
-        public static final String COLUMN_PET_GENDER = "gender"; // gender
-        public static final String COLUMN_PET_WEIGHT = "weight"; // weight
+        public static final String COLUMN_BOOK_PRODUCT_NAME = "name";
+        public static final String COLUMN_BOOK_PRICE = "price"; // breed
+        public static final String COLUMN_BOOK_QUANTITY = "quantity"; // gender
+        public static final String COLUMN_BOOK_SUPPLIER_NAME = "supplier_name"; // weight
+        public static final String COLUMN_BOOK_SUPPLIER_PHONE = "supplier_phone"; // weight
 
-    /**
-     * Possible values for the gender
-     */
 
-    public static final int GENDER_UNKNOWN = 0;
-    public static final int GENDER_MALE = 1;
-    public static final int GENDER_FEMALE = 2;
 
 
 }

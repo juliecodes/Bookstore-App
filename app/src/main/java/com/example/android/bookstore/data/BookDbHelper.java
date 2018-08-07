@@ -54,10 +54,11 @@ public class BookDbHelper extends SQLiteOpenHelper {
         // Create a String that contains the SQL statement to create the bookstore table
         String SQL_CREATE_BOOKS_TABLE =  "CREATE TABLE " + BookEntry.TABLE_NAME + " ("
                 + BookEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + BookEntry.COLUMN_PET_NAME + " TEXT NOT NULL, "
-                + BookEntry.COLUMN_PET_BREED + " TEXT, "
-                + BookEntry.COLUMN_PET_GENDER + " INTEGER NOT NULL, "
-                + BookEntry.COLUMN_PET_WEIGHT + " INTEGER NOT NULL DEFAULT 0);";
+                + BookEntry.COLUMN_BOOK_PRODUCT_NAME + " TEXT NOT NULL, "
+                + BookEntry.COLUMN_BOOK_PRICE + " INTEGER NOT NULL, "
+                + BookEntry.COLUMN_BOOK_QUANTITY + " INTEGER NOT NULL DEFAULT 0, "
+                + BookEntry.COLUMN_BOOK_SUPPLIER_NAME + " TEXT, "
+                + BookEntry.COLUMN_BOOK_SUPPLIER_PHONE + " TEXT );";
 
 
         Log.v(LOG_TAG,SQL_CREATE_BOOKS_TABLE);
