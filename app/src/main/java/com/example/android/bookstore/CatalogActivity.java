@@ -118,15 +118,25 @@ public class CatalogActivity extends AppCompatActivity {
                 // at the current row the cursor is on.
                 int currentID = cursor.getInt(idColumnIndex);
                 String currentName = cursor.getString(nameColumnIndex);
-                String currentPrice = cursor.getString(priceColumnIndex);
+                int currentPrice = cursor.getInt(priceColumnIndex);
                 int currentQuantity = cursor.getInt(quantityColumnIndex);
-                int currentSupplierName = cursor.getInt(supplierNameColumnIndex);
-                int currentSupplierPhone = cursor.getInt(supplierPhoneColumnIndex);
+                String currentSupplierName = cursor.getString(supplierNameColumnIndex);
+                String currentSupplierPhone = cursor.getString(supplierPhoneColumnIndex);
+
+
+                if (currentSupplierName.isEmpty()) {
+                    currentSupplierName = "Unknown supplier";
+                }
+
+                if (currentSupplierPhone.isEmpty()) {
+                    currentSupplierPhone = "";
+                }
+
                 // Display the values from each column of the current row in the cursor in the TextView
                 displayView.append(("\n" + currentID + " - " +
                         currentName + " - " +
-                        currentPrice + " - " +
-                        currentQuantity + " - " +
+                        "$ " + currentPrice + " - " +
+                        "Qty: " + currentQuantity + " - " +
                         currentSupplierName + " - " +
                         currentSupplierPhone));
             }
