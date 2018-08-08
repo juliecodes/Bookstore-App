@@ -29,6 +29,7 @@
     <!-- Label for editor overflow menu option that deletes the current book [CHAR LIMIT=20] -->
     <string name="action_delete">Delete</string>
 
+
     <!-- Label for product name information in the editor [CHAR LIMIT=30] -->
     <string name="category_book_name">Product Name</string>
 
@@ -41,12 +42,12 @@
     <!-- Label for supplier overview category of attributes in the editor [CHAR LIMIT=30] -->
     <string name="supplier_overview">Supplier</string>
 
+    
     <!-- Text hint for name field in the editor [CHAR LIMIT=30] -->
     <string name="hint_product_name">Product Name</string>
 
     <!-- Text hint for price field in the editor [CHAR LIMIT=30] -->
     <string name="hint_book_price">Price</string>
-
 
     <!-- Text hint for quantity field in the editor [CHAR LIMIT=30] -->
     <string name="hint_quantity">Quantity</string>
