@@ -32,7 +32,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.TextView;
 import android.widget.ListView;
-
+import android.util.Log;
 
 import com.example.android.pets.data.PetContract.PetEntry;
 
@@ -126,6 +126,16 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
         Uri newUri = getContentResolver().insert(PetEntry.CONTENT_URI, values);
     }
 
+
+    /**
+     * Helper method to delete all pets in the database.
+     */
+    private void deleteAllPets() {
+        int rowsDeleted = getContentResolver().delete(PetEntry.CONTENT_URI, null, null);
+        Log.v("CatalogActivity", rowsDeleted + " rows deleted from pet database");
+    }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu options from the res/menu/menu_catalog.xml file.
@@ -145,7 +155,7 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
                 return true;
             // Respond to a click on the "Delete all entries" menu option
             case R.id.action_delete_all_entries:
-                // Do nothing for now
+                deleteAllPets();
                 return true;
         }
         return super.onOptionsItemSelected(item);
