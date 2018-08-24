@@ -33,7 +33,7 @@
         <item name="android:paddingTop">16dp</item>
         <item name="android:textColor">@color/colorAccent</item>
         <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="android:textAppearance">?android:textAppearanceSmall</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
     <!-- Style for an EditText field in the editor -->
@@ -41,16 +41,17 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:fontFamily">sans-serif-light</item>
-        <item name="android:textAppearance">?android:textAppearanceMedium</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
     <!-- Style for the measurement units for an EditText field in the editor -->
     <style name="EditorUnitsStyle">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_alignParentLeft">true</item>
         <item name="android:paddingRight">16dp</item>
         <item name="android:paddingTop">16dp</item>
-        <item name="android:textAppearance">?android:textAppearanceSmall</item>
+        <item name="android:textSize">14sp</item>
     </style>
+
 </resources>
