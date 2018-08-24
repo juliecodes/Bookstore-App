@@ -57,8 +57,8 @@ public class BookDbHelper extends SQLiteOpenHelper {
                 + BookEntry.COLUMN_BOOK_NAME + " TEXT NOT NULL, "
                 + BookEntry.COLUMN_BOOK_PRICE + " TEXT, "
                 + BookEntry.COLUMN_BOOK_QUANTITY + " INTEGER NOT NULL DEFAULT 0, "
-                + BookEntry.COLUMN_BOOK_SUPPLIERNAME + " TEXT, " +
-                + BookEntry.COLUMN_BOOK_SUPPLIERPHONE + " TEXT);";
+                + BookEntry.COLUMN_BOOK_SUPPLIERNAME + " TEXT, "
+                + BookEntry.COLUMN_BOOK_SUPPLIERPHONE + " TEXT )";
 
 
         Log.v(LOG_TAG,SQL_CREATE_PETS_TABLE);
