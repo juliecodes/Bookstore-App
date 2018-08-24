@@ -38,7 +38,7 @@
         </activity>
 
         <provider
-            android:name=".data.PetProvider"
+            android:name=".data.BookProvider"
             android:authorities="com.example.android.pets"
             android:exported="false" />
     </application>

@@ -9,12 +9,12 @@ import android.text.format.Time;
 
 
 
-public class PetContract {
+public class BookContract {
 
 
     // To prevent someone from accidentally instantiating the contract class,
     // give it an empty constructor.
-    private PetContract() {}
+    private BookContract() {}
 
     /**
      * The "Content authority" is a name for the entire content provider, similar to the

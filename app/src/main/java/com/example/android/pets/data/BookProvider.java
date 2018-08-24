@@ -10,12 +10,12 @@ import android.net.Uri;
 import android.util.Log;
 
 
-import com.example.android.pets.data.PetContract.PetEntry;
+import com.example.android.pets.data.BookContract.PetEntry;
 
 /**
  * {@link ContentProvider} for Pets app.
  */
-public class PetProvider extends ContentProvider {
+public class BookProvider extends ContentProvider {
 
 
 
@@ -39,8 +39,8 @@ public class PetProvider extends ContentProvider {
         // should recognize. All paths added to the UriMatcher have a corresponding code to return
         // when a match is found.
 
-        sUriMatcher.addURI(PetContract.CONTENT_AUTHORITY, PetContract.PATH_PETS, PETS);
-        sUriMatcher.addURI(PetContract.CONTENT_AUTHORITY, PetContract.PATH_PETS + "/#", PET_ID);
+        sUriMatcher.addURI(BookContract.CONTENT_AUTHORITY, BookContract.PATH_PETS, PETS);
+        sUriMatcher.addURI(BookContract.CONTENT_AUTHORITY, BookContract.PATH_PETS + "/#", PET_ID);
 
     }
 
@@ -48,19 +48,19 @@ public class PetProvider extends ContentProvider {
 
 
     /** Tag for the log messages */
-    public static final String LOG_TAG = PetProvider.class.getSimpleName();
+    public static final String LOG_TAG = BookProvider.class.getSimpleName();
 
 /** Database helper object */
-    private PetDbHelper mDbHelper;
+    private BookDbHelper mDbHelper;
     /**
      * Initialize the provider and the database helper object.
      */
     @Override
     public boolean onCreate() {
-        // Create and initialize a PetDbHelper object to gain access to the pets database.
+        // Create and initialize a BookDbHelper object to gain access to the pets database.
         // Make sure the variable is a global variable, so it can be referenced from other
         // ContentProvider methods.
-        mDbHelper = new PetDbHelper(getContext());
+        mDbHelper = new BookDbHelper(getContext());
 
         return true;
     }

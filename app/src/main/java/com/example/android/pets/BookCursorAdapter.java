@@ -7,24 +7,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
-import com.example.android.pets.data.PetContract.PetEntry;
+import com.example.android.pets.data.BookContract.PetEntry;
 import android.text.TextUtils;
 
 
 /**
- * {@link PetCursorAdapter} is an adapter for a list or grid view
+ * {@link BookCursorAdapter} is an adapter for a list or grid view
  * that uses a {@link Cursor} of pet data as its data source. This adapter knows
  * how to create list items for each row of pet data in the {@link Cursor}.
  */
-public class PetCursorAdapter extends CursorAdapter {
+public class BookCursorAdapter extends CursorAdapter {
 
     /**
-     * Constructs a new {@link PetCursorAdapter}.
+     * Constructs a new {@link BookCursorAdapter}.
      *
      * @param context The context
      * @param c       The cursor from which to get the data.
      */
-    public PetCursorAdapter(Context context, Cursor c) {
+    public BookCursorAdapter(Context context, Cursor c) {
         super(context, c, 0 /* flags */);
     }
 

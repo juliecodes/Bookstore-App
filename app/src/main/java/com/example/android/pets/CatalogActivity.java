@@ -30,11 +30,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.TextView;
 import android.widget.ListView;
 import android.util.Log;
 
-import com.example.android.pets.data.PetContract.PetEntry;
+import com.example.android.pets.data.BookContract.PetEntry;
 
 /**
  * Displays list of pets that were entered and stored in the app.
@@ -43,7 +42,7 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
 
     private static final int PET_LOADER = 0;
 
-    PetCursorAdapter mCursorAdapter;
+    BookCursorAdapter mCursorAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +69,7 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
 
         // Setup an Adapter to create a list item for each row of pet data in the Cursor.
         // There is no pet data yet (until the loader finishes) so pass in null for the Cursor.
-        mCursorAdapter = new PetCursorAdapter(this, null);
+        mCursorAdapter = new BookCursorAdapter(this, null);
         petListView.setAdapter(mCursorAdapter);
 
 
@@ -181,7 +180,7 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        // Update {@link PetCursorAdapter} with this new cursor containing updated pet data
+        // Update {@link BookCursorAdapter} with this new cursor containing updated pet data
         mCursorAdapter.swapCursor(data);
     }
 
