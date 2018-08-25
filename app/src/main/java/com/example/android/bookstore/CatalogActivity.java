@@ -75,14 +75,8 @@ public class CatalogActivity extends AppCompatActivity {
                 BookEntry.COLUMN_BOOK_SUPPLIER_PHONE
         };
 
-        Cursor cursor = db.query(
-                BookEntry.TABLE_NAME,
-                projection,
-                null,
-                null,
-                null,
-                null,
-                null);
+     
+       Cursor cursor = getContentResolver().query(BookEntry.CONTENT_URI, projection, null, null, null);
 
         TextView displayView = (TextView) findViewById(R.id.text_view_pet);
 
