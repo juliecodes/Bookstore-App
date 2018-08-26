@@ -125,6 +125,22 @@ public class BookProvider extends ContentProvider {
     private Uri insertBook(Uri uri, ContentValues values) {
 
 
+
+        // Check that the name is not null
+        String name = values.getAsString(BookEntry.COLUMN_BOOK_PRODUCT_NAME);
+        if (name == null) {
+            throw new IllegalArgumentException("Book requires a name");
+        }
+
+        // If the quantity is provided, check that it's greater than or equal to 0
+        Integer quantity = values.getAsInteger(BookEntry.COLUMN_BOOK_QUANTITY);
+        if (quantity != null && quantity < 0) {
+            throw new IllegalArgumentException("Book requires valid quantity");
+        }
+
+        // No need to check the price, any value is valid (including null).
+
+
         // Get writable database
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
