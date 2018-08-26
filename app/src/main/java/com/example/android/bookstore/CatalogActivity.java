@@ -159,8 +159,8 @@ public class CatalogActivity extends AppCompatActivity {
         // Create a ContentValues object where column names are the keys,
         // and Toto's pet attributes are the values.
         ContentValues values = new ContentValues();
-        values.put(BookEntry.COLUMN_BOOK_PRODUCT_NAME, "Monsoon Mansion");
-        values.put(BookEntry.COLUMN_BOOK_PRICE, "Cinelle Barnes");
+        values.put(BookEntry.COLUMN_BOOK_PRODUCT_NAME, "Monsoon Mansion by Cinelle Barnes");
+        values.put(BookEntry.COLUMN_BOOK_PRICE, 27);
         values.put(BookEntry.COLUMN_BOOK_QUANTITY, 2);
         values.put(BookEntry.COLUMN_BOOK_SUPPLIER_NAME, "Book Supply Co.");
         values.put(BookEntry.COLUMN_BOOK_SUPPLIER_PHONE, "(202) 555-5555");
