@@ -17,6 +17,7 @@ package com.example.android.bookstore;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
@@ -86,10 +87,10 @@ public class EditorActivity extends AppCompatActivity {
         String supplierPhoneString = mSupplierPhoneEditText.getText().toString().trim();
 
 
-        BookDbHelper mDbHelper = new BookDbHelper(this);
+        // BookDbHelper mDbHelper = new BookDbHelper(this);
 
         // Gets the database in write mode
-         SQLiteDatabase db = mDbHelper.getWritableDatabase();
+         // SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
         // Create a ContentValues object where column names are the keys,
         // and Toto's pet attributes are the values.
@@ -99,6 +100,10 @@ public class EditorActivity extends AppCompatActivity {
         values.put(BookEntry.COLUMN_BOOK_QUANTITY, quantityString);
          values.put(BookEntry.COLUMN_BOOK_SUPPLIER_NAME, supplierNameString);
         values.put(BookEntry.COLUMN_BOOK_SUPPLIER_PHONE, supplierPhoneString);
+
+        // Insert a new book into the provider, returning the content URI for the new book.
+        Uri newUri = getContentResolver().insert(BookEntry.CONTENT_URI, values);
+
         // Insert a new row for Toto in the database, returning the ID of that new row.
         // The first argument for db.insert() is the bookstore table name.
         // The second argument provides the name of a column in which the framework
@@ -106,12 +111,12 @@ public class EditorActivity extends AppCompatActivity {
         // this is set to "null", then the framework will not insert a row when
         // there are no values).
         // The third argument is the ContentValues object containing the info for Toto.
-         long newRowId = db.insert(BookEntry.TABLE_NAME, null, values);
+        // long newRowId = db.insert(BookEntry.TABLE_NAME, null, values);
 
-         if(newRowId == -1) {
-             Toast.makeText(this, "Error with saving book", Toast.LENGTH_SHORT).show();
+         if(newUri == null) {
+             Toast.makeText(this, getString(R.string.editor_insert_book_failed), Toast.LENGTH_SHORT).show();
          } else {
-             Toast.makeText(this, "Book saved with row id: " + newRowId, Toast.LENGTH_SHORT).show();
+             Toast.makeText(this, getString(R.string.editor_insert_book_successful), Toast.LENGTH_SHORT).show();
          }
 
     }
