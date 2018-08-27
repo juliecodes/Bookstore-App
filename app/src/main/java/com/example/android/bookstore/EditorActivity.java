@@ -110,9 +110,9 @@ public class EditorActivity extends AppCompatActivity implements
 
     }
 
+// Get user input from editor and save pet into database.
 
-
-    private void insertBook() {
+    private void saveBook() {
         String nameString = mNameEditText.getText().toString().trim();
         String priceString = mPriceEditText.getText().toString().trim();
         String quantityString = mQuantityEditText.getText().toString().trim();
@@ -134,22 +134,39 @@ public class EditorActivity extends AppCompatActivity implements
          values.put(BookEntry.COLUMN_BOOK_SUPPLIER_NAME, supplierNameString);
         values.put(BookEntry.COLUMN_BOOK_SUPPLIER_PHONE, supplierPhoneString);
 
-        // Insert a new book into the provider, returning the content URI for the new book.
-        Uri newUri = getContentResolver().insert(BookEntry.CONTENT_URI, values);
 
-        // Insert a new row for Toto in the database, returning the ID of that new row.
-        // The first argument for db.insert() is the bookstore table name.
-        // The second argument provides the name of a column in which the framework
-        // can insert NULL in the event that the ContentValues is empty (if
-        // this is set to "null", then the framework will not insert a row when
-        // there are no values).
-        // The third argument is the ContentValues object containing the info for Toto.
-        // long newRowId = db.insert(BookEntry.TABLE_NAME, null, values);
+        // Determine if this is a new or existing pet by checking if mCurrentBookUri is null or not
 
-         if(newUri == null) {
-             Toast.makeText(this, getString(R.string.editor_insert_book_failed), Toast.LENGTH_SHORT).show();
+
+         if(mCurrentBookUri == null) {
+             // This is a NEW book, so insert a new book into the provider,
+             // returning the content URI for the new book.
+             Uri newUri = getContentResolver().insert(BookEntry.CONTENT_URI, values);
+
+             // Show a toast message depending on whether or not the insertion was successful.
+             if (newUri == null) {
+                 // If the new content URI is null, then there was an error with insertion.
+                 Toast.makeText(this, getString(R.string.editor_insert_book_failed), Toast.LENGTH_SHORT).show();
+             } else {
+                 // Otherwise, the insertion was successful and we can display a toast.
+                 Toast.makeText(this, getString(R.string.editor_insert_book_successful), Toast.LENGTH_SHORT).show();
+             }
+
          } else {
-             Toast.makeText(this, getString(R.string.editor_insert_book_successful), Toast.LENGTH_SHORT).show();
+             // Otherwise this is an EXITING pet, so update the pet with content URI: mCurrentBookUri
+             // and pass in the new ContentValues. Pass in null for the selection and selection args
+             // because mCurrentBookUri will already identify the current row in the database that
+             // we want to modify.
+
+             int rowsAffected = getContentResolver().update(mCurrentBookUri, values, null, null);
+             // Show a toast message depending on whether or not the update was successful.
+             if (rowsAffected == 0) {
+                 // If no rows were affected, then there was an error with the update.
+                 Toast.makeText(this, getString(R.string.editor_update_book_failed), Toast.LENGTH_SHORT).show();
+             } else {
+                 // Otherwise, the update was successful and we can display a toast.
+                 Toast.makeText(this, getString(R.string.editor_update_book_successful), Toast.LENGTH_SHORT).show();
+             }
          }
 
     }
@@ -169,12 +186,10 @@ public class EditorActivity extends AppCompatActivity implements
         switch (item.getItemId()) {
             // Respond to a click on the "Save" menu option
             case R.id.action_save:
-
-                insertBook();
+                saveBook();
                 finish();
-
-
                 return true;
+                
             // Respond to a click on the "Delete" menu option
             case R.id.action_delete:
                 // Do nothing for now
