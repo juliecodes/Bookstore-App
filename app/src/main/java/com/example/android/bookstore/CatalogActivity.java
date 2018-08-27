@@ -19,6 +19,8 @@ import android.widget.AdapterView;
 import android.widget.TextView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.util.Log;
+
 
 
 import com.example.android.bookstore.data.BookDbHelper;
@@ -64,7 +66,7 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
 
 
 
-        // TODO: Setup the item click listener
+        // setup the onclick listener
         bookListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
@@ -118,6 +120,14 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
         Uri newUri = getContentResolver().insert(BookEntry.CONTENT_URI, values);
     }
 
+    /**
+     * Helper method to delete all pets in the database.
+     */
+    private void deleteAllBooks() {
+        int rowsDeleted = getContentResolver().delete(BookEntry.CONTENT_URI, null, null);
+        Log.v("CatalogActivity", rowsDeleted + " rows deleted from book database");
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -153,7 +163,7 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
                 return true;
             // Respond to a click on the "Delete all entries" menu option
             case R.id.action_delete_all_entries:
-                // Do nothing for now
+                deleteAllBooks();
                 return true;
         }
         return super.onOptionsItemSelected(item);
