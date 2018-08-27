@@ -1,7 +1,10 @@
 package com.example.android.bookstore;
 
+import android.app.LoaderManager;
 import android.content.ContentValues;
+import android.content.CursorLoader;
 import android.content.Intent;
+import android.content.Loader;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
@@ -13,20 +16,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 
 
 import com.example.android.bookstore.data.BookDbHelper;
 import com.example.android.bookstore.data.BookContract.BookEntry;
-import com.example.android.bookstore.data.BookDbHelper;
 
 /**
- * Displays list of bookstore that were entered and stored in the app.
+ * Displays list of books that were entered and stored in the app.
  */
-public class CatalogActivity extends AppCompatActivity {
+public class CatalogActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
-    /** Database helper that will provide us access to the database */
-    // private BookDbHelper mDbHelper;
+    private static final int BOOK_LOADER = 0;
 
+    BookCursorAdapter mCursorAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,56 +59,20 @@ public class CatalogActivity extends AppCompatActivity {
         View emptyView = findViewById(R.id.empty_view);
         bookListView.setEmptyView(emptyView);
 
-    }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        displayDatabaseInfo();
-    }
+        // Setup an Adapter to create a list item for each row of pet data in the Cursor.
+        // There is no pet data yet (until the loader finishes) so pass in null for the Cursor.
+        mCursorAdapter = new BookCursorAdapter(this, null);
+        bookListView.setAdapter(mCursorAdapter);
 
-
-    /**
-     * Temporary helper method to display information in the onscreen TextView about the state of
-     * the bookstore database.
-     */
-    private void displayDatabaseInfo() {
-        // To access our database, we instantiate our subclass of SQLiteOpenHelper
-        // and pass the context, which is the current activity.
-        // PetDbHelper mDbHelper = new PetDbHelper(this);
-
-        // Create and/or open a database to read from it
-       //  SQLiteDatabase db = mDbHelper.getReadableDatabase();
-
-
-        String[] projection = {
-                BookEntry._ID,
-                BookEntry.COLUMN_BOOK_PRODUCT_NAME,
-                BookEntry.COLUMN_BOOK_PRICE,
-                BookEntry.COLUMN_BOOK_QUANTITY,
-                BookEntry.COLUMN_BOOK_SUPPLIER_NAME,
-                BookEntry.COLUMN_BOOK_SUPPLIER_PHONE
-        };
-
-// perform a query on the provider using the ContentResolver.
-        // Use the {@link BookEntry#CONTENT_URI} to access the pet data.
-       Cursor cursor = getContentResolver().query(
-               BookEntry.CONTENT_URI, // The content URI of the words table
-               projection,  // the columns to return for each row
-               null, // selection criteria
-               null, // selection criteria
-               null); // the sort order for the returned rows
-
-// Find the ListView which will be populated with the book data
-        ListView bookListView = (ListView) findViewById(R.id.list);
-
-        //Setup an adapter to create a list item for each row of book data in the Cursor.
-        BookCursorAdapter adapter = new BookCursorAdapter(this, cursor);
-
-        // Attach the adapter to the ListView
-        bookListView.setAdapter(adapter);
+        // Kick off the loader
+        getLoaderManager().initLoader(BOOK_LOADER, null, this);
 
     }
+
+
+
+
 
 
     /**
@@ -158,7 +125,7 @@ public class CatalogActivity extends AppCompatActivity {
 
                 insertBook();
 
-                displayDatabaseInfo();
+
 
                 return true;
             // Respond to a click on the "Delete all entries" menu option
@@ -170,5 +137,34 @@ public class CatalogActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        // Define a projection that specifies the columns from the table we care about.
+        String[] projection = {
+                BookEntry._ID,
+                BookEntry.COLUMN_BOOK_PRODUCT_NAME,
+                BookEntry.COLUMN_BOOK_PRICE
+        };
 
+        //This loader will execute the ContentProvider's query method on a background thread.
+        return new CursorLoader(this,       // Parent activity context
+                BookEntry.CONTENT_URI,      // Provider content URI to query
+                projection,                 // Columns to include in the resulting cursor
+                null,                       // No selection clause
+                null,                       // No selection arguments
+                null);                      // Default sort order
+
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        // Update {@link PetCursorAdapter} with this new cursor containing updated pet data
+        mCursorAdapter.swapCursor(data);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        // Callback called when the data needs to be deleted
+        mCursorAdapter.swapCursor(null);
+    }
 }
