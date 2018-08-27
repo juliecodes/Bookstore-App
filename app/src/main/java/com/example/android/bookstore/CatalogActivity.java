@@ -1,6 +1,7 @@
 package com.example.android.bookstore;
 
 import android.app.LoaderManager;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.CursorLoader;
 import android.content.Intent;
@@ -14,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.TextView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -46,11 +48,6 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
             }
         });
 
-        // To access our database, we instantiate our subclass of SQLiteOpenHelper
-        // and pass the context, which is the current activity.
-        // mDbHelper = new BookDbHelper(this);
-
-        // displayDatabaseInfo();
 
 
         // Find the ListView which will be populated with the pet data
@@ -64,6 +61,32 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
         // There is no pet data yet (until the loader finishes) so pass in null for the Cursor.
         mCursorAdapter = new BookCursorAdapter(this, null);
         bookListView.setAdapter(mCursorAdapter);
+
+
+
+        // TODO: Setup the item click listener
+        bookListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                // Create new intent to go to  {@link EditorActivity}
+                Intent intent = new Intent(CatalogActivity.this, EditorActivity.class);
+
+                // Form the content URI that represents that specific book that was clicked on,
+                // by appending the "id" (passed as input to this method) onto the
+                // {@link BookEntry#CONTENT_URI}.
+                // For example, the URI would be "content://com.example.android.bookstore/books/2"
+                // if the book with ID 2 was clicked on.
+                Uri currentBookUri = ContentUris.withAppendedId(BookEntry.CONTENT_URI, id);
+
+                // Set the URI on the data field of the intent
+                intent.setData(currentBookUri);
+
+                // Launch the  {@link EditorActivity} to display the data for the current pet.
+                startActivity(intent);
+
+            }
+        });
+
 
         // Kick off the loader
         getLoaderManager().initLoader(BOOK_LOADER, null, this);

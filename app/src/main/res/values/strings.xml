@@ -23,6 +23,8 @@
     <!-- Title for the activity to add a new pet [CHAR LIMIT=20] -->
     <string name="editor_activity_title_new_book">Add a Book</string>
 
+    <string name="editor_activity_title_edit_book">Edit a Book</string>
+
     <!-- Label for editor menu option to save pet and leave editor [CHAR LIMIT=20] -->
     <string name="action_save">Save</string>
 
