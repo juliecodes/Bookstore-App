@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.text.TextUtils;
 
 
         import android.widget.CursorAdapter;
@@ -68,6 +69,13 @@ public class BookCursorAdapter extends CursorAdapter {
         // Read the book attributes from the Cursor for the current book
         String bookName = cursor.getString(nameColumnIndex);
         String bookPrice = cursor.getString(priceColumnIndex);
+
+
+        // If the pet breed is empty string or null, then use some default text
+        // that says "Unknown breed", so the TextView isn't blank.
+        if (TextUtils.isEmpty(bookPrice)) {
+            bookPrice = context.getString(R.string.unknown_price);
+        }
 
         // Update the TextViews with the attributes for the current book
         nameTextView.setText(bookName);
