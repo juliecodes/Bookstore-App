@@ -158,6 +158,15 @@ public class EditorActivity extends AppCompatActivity implements
             return;
         }
 
+
+        if (mCurrentBookUri != null && (TextUtils.isEmpty(nameString) || TextUtils.isEmpty(authorString) || TextUtils.isEmpty(priceString) ||
+                TextUtils.isEmpty(quantityString) || TextUtils.isEmpty(supplierNameString) || TextUtils.isEmpty(supplierPhoneString))) {
+            // send toast that not all values are filled in
+            Toast.makeText(this, getString(R.string.editor_insert_book_blank_fields), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
         // Create a ContentValues object where column names are the keys,
         // and Toto's pet attributes are the values.
          ContentValues values = new ContentValues();
@@ -168,21 +177,23 @@ public class EditorActivity extends AppCompatActivity implements
          values.put(BookEntry.COLUMN_BOOK_SUPPLIER_NAME, supplierNameString);
         values.put(BookEntry.COLUMN_BOOK_SUPPLIER_PHONE, supplierPhoneString);
 
-        // If the weight is not provided by the user, don't try to parse the string into an
-        // integer value. Use 0 by default.
-        int quantity = 0;
-        if (!TextUtils.isEmpty(quantityString)) {
-            quantity = Integer.parseInt(quantityString);
-        }
+       /* if (mCurrentBookUri != null && (TextUtils.isEmpty(nameString) || TextUtils.isEmpty(authorString) || TextUtils.isEmpty(priceString) ||
+                TextUtils.isEmpty(quantityString) || TextUtils.isEmpty(supplierNameString) || TextUtils.isEmpty(supplierPhoneString))) {
+            // send toast that not all values are filled in
+            Toast.makeText(this, getString(R.string.editor_insert_book_blank_fields), Toast.LENGTH_SHORT).show();
+            return;
+        } */
 
 
-        // Determine if this is a new or existing pet by checking if mCurrentBookUri is null or not
+        // Determine if this is a new or existing book by checking if mCurrentBookUri is null or not
 
 
          if(mCurrentBookUri == null) {
              // This is a NEW book, so insert a new book into the provider,
              // returning the content URI for the new book.
              Uri newUri = getContentResolver().insert(BookEntry.CONTENT_URI, values);
+
+
 
              // Show a toast message depending on whether or not the insertion was successful.
              if (newUri == null) {

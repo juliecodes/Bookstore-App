@@ -146,13 +146,13 @@ public class BookProvider extends ContentProvider {
 
         // If the price is provided, check that it's greater than or equal to 0
         Integer price = values.getAsInteger(BookEntry.COLUMN_BOOK_PRICE);
-        if (price != null && price < 0) {
+        if ((price == null) || (price < 0)) {
             throw new IllegalArgumentException("Book requires valid price");
         }
 
         // If the quantity is provided, check that it's greater than or equal to 0
         Integer quantity = values.getAsInteger(BookEntry.COLUMN_BOOK_QUANTITY);
-        if (quantity != null && quantity < 0) {
+        if ((quantity == null) || (quantity < 0)) {
             throw new IllegalArgumentException("Book requires valid quantity");
         }
 
@@ -241,7 +241,7 @@ public class BookProvider extends ContentProvider {
         if (values.containsKey(BookEntry.COLUMN_BOOK_PRICE)) {
             // Check that the quantity is greater than or equal to 0 kg
             Integer price = values.getAsInteger(BookEntry.COLUMN_BOOK_PRICE);
-            if (price != null && price < 0) {  throw new IllegalArgumentException("Book requires valid price");
+            if ((price == null) || (price < 0)) {  throw new IllegalArgumentException("Book requires valid price");
             }
         }
 
@@ -251,7 +251,7 @@ public class BookProvider extends ContentProvider {
         if (values.containsKey(BookEntry.COLUMN_BOOK_QUANTITY)) {
             // Check that the quantity is greater than or equal to 0 kg
             Integer quantity = values.getAsInteger(BookEntry.COLUMN_BOOK_QUANTITY);
-            if (quantity != null && quantity < 0) {  throw new IllegalArgumentException("Book requires valid quantity");
+            if ((quantity == null) || (quantity < 0)) {  throw new IllegalArgumentException("Book requires valid quantity");
             }
         }
 

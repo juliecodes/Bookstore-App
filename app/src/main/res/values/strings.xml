@@ -79,6 +79,9 @@
     <!-- Toast message in editor when new book has failed to be inserted [CHAR LIMIT=NONE] -->
     <string name="editor_insert_book_failed">Error with saving book</string>
 
+    <string name="editor_insert_book_blank_fields">Please fill in all information</string>
+
+
     <!-- Toast message in editor when current pet was successfully updated [CHAR LIMIT=NONE] -->
     <string name="editor_update_book_successful">Book updated</string>
     <!-- Toast message in editor when current pet has failed to be updated [CHAR LIMIT=NONE] -->
