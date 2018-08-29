@@ -166,12 +166,12 @@
                 android:hint="@string/hint_supplier_name"
                 android:inputType="textCapWords" />
 
-            <!-- Breed field -->
+            <!-- Phone field -->
             <EditText
                 android:id="@+id/edit_supplier_phone"
                 style="@style/EditorFieldStyle"
                 android:hint="@string/hint_supplier_phone"
-                android:inputType="textCapWords" />
+                android:inputType="phone" />
         </LinearLayout>
     </LinearLayout>
 
