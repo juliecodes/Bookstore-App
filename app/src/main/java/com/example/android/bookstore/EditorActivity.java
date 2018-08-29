@@ -156,70 +156,75 @@ public class EditorActivity extends AppCompatActivity implements
             // Since no fields were modified, we can return early without creating a new pet.
             // No need to create ContentValues and no need to do any ContentProvider operations.
             return;
-        }
-
-
-        if (mCurrentBookUri != null && (TextUtils.isEmpty(nameString) || TextUtils.isEmpty(authorString) || TextUtils.isEmpty(priceString) ||
+        }  else if (mCurrentBookUri == null && (TextUtils.isEmpty(nameString) || TextUtils.isEmpty(authorString) || TextUtils.isEmpty(priceString) ||
                 TextUtils.isEmpty(quantityString) || TextUtils.isEmpty(supplierNameString) || TextUtils.isEmpty(supplierPhoneString))) {
             // send toast that not all values are filled in
             Toast.makeText(this, getString(R.string.editor_insert_book_blank_fields), Toast.LENGTH_SHORT).show();
-            return;
-        }
 
-
-        // Create a ContentValues object where column names are the keys,
-        // and Toto's pet attributes are the values.
-         ContentValues values = new ContentValues();
-         values.put(BookEntry.COLUMN_BOOK_PRODUCT_NAME, nameString);
-        values.put(BookEntry.COLUMN_BOOK_AUTHOR, authorString);
-         values.put(BookEntry.COLUMN_BOOK_PRICE, priceString);
-        values.put(BookEntry.COLUMN_BOOK_QUANTITY, quantityString);
-         values.put(BookEntry.COLUMN_BOOK_SUPPLIER_NAME, supplierNameString);
-        values.put(BookEntry.COLUMN_BOOK_SUPPLIER_PHONE, supplierPhoneString);
-
-       /* if (mCurrentBookUri != null && (TextUtils.isEmpty(nameString) || TextUtils.isEmpty(authorString) || TextUtils.isEmpty(priceString) ||
+        } else if (mCurrentBookUri != null && (TextUtils.isEmpty(nameString) || TextUtils.isEmpty(authorString) || TextUtils.isEmpty(priceString) ||
                 TextUtils.isEmpty(quantityString) || TextUtils.isEmpty(supplierNameString) || TextUtils.isEmpty(supplierPhoneString))) {
             // send toast that not all values are filled in
             Toast.makeText(this, getString(R.string.editor_insert_book_blank_fields), Toast.LENGTH_SHORT).show();
-            return;
-        } */
+
+        }
+
+        else {
+            // Create a ContentValues object where column names are the keys,
+            // and Toto's pet attributes are the values.
+            ContentValues values = new ContentValues();
+            values.put(BookEntry.COLUMN_BOOK_PRODUCT_NAME, nameString);
+            values.put(BookEntry.COLUMN_BOOK_AUTHOR, authorString);
+            values.put(BookEntry.COLUMN_BOOK_PRICE, priceString);
+            values.put(BookEntry.COLUMN_BOOK_QUANTITY, quantityString);
+            values.put(BookEntry.COLUMN_BOOK_SUPPLIER_NAME, supplierNameString);
+            values.put(BookEntry.COLUMN_BOOK_SUPPLIER_PHONE, supplierPhoneString);
 
 
-        // Determine if this is a new or existing book by checking if mCurrentBookUri is null or not
+
+            // Determine if this is a new or existing book by checking if mCurrentBookUri is null or not
 
 
-         if(mCurrentBookUri == null) {
-             // This is a NEW book, so insert a new book into the provider,
-             // returning the content URI for the new book.
-             Uri newUri = getContentResolver().insert(BookEntry.CONTENT_URI, values);
+            if(mCurrentBookUri == null) {
+                // This is a NEW book, so insert a new book into the provider,
+                // returning the content URI for the new book.
+                Uri newUri = getContentResolver().insert(BookEntry.CONTENT_URI, values);
 
 
 
-             // Show a toast message depending on whether or not the insertion was successful.
-             if (newUri == null) {
-                 // If the new content URI is null, then there was an error with insertion.
-                 Toast.makeText(this, getString(R.string.editor_insert_book_failed), Toast.LENGTH_SHORT).show();
-             } else {
-                 // Otherwise, the insertion was successful and we can display a toast.
-                 Toast.makeText(this, getString(R.string.editor_insert_book_successful), Toast.LENGTH_SHORT).show();
-             }
+                // Show a toast message depending on whether or not the insertion was successful.
+                if (newUri == null) {
+                    // If the new content URI is null, then there was an error with insertion.
+                    Toast.makeText(this, getString(R.string.editor_insert_book_failed), Toast.LENGTH_SHORT).show();
+                } else {
+                    // Otherwise, the insertion was successful and we can display a toast.
+                    Toast.makeText(this, getString(R.string.editor_insert_book_successful), Toast.LENGTH_SHORT).show();
+                }
 
-         } else {
-             // Otherwise this is an EXITING pet, so update the pet with content URI: mCurrentBookUri
-             // and pass in the new ContentValues. Pass in null for the selection and selection args
-             // because mCurrentBookUri will already identify the current row in the database that
-             // we want to modify.
+            } else {
+                // Otherwise this is an EXITING pet, so update the pet with content URI: mCurrentBookUri
+                // and pass in the new ContentValues. Pass in null for the selection and selection args
+                // because mCurrentBookUri will already identify the current row in the database that
+                // we want to modify.
 
-             int rowsAffected = getContentResolver().update(mCurrentBookUri, values, null, null);
-             // Show a toast message depending on whether or not the update was successful.
-             if (rowsAffected == 0) {
-                 // If no rows were affected, then there was an error with the update.
-                 Toast.makeText(this, getString(R.string.editor_update_book_failed), Toast.LENGTH_SHORT).show();
-             } else {
-                 // Otherwise, the update was successful and we can display a toast.
-                 Toast.makeText(this, getString(R.string.editor_update_book_successful), Toast.LENGTH_SHORT).show();
-             }
-         }
+                int rowsAffected = getContentResolver().update(mCurrentBookUri, values, null, null);
+                // Show a toast message depending on whether or not the update was successful.
+                if (rowsAffected == 0) {
+                    // If no rows were affected, then there was an error with the update.
+                    Toast.makeText(this, getString(R.string.editor_update_book_failed), Toast.LENGTH_SHORT).show();
+                } else {
+                    // Otherwise, the update was successful and we can display a toast.
+                    Toast.makeText(this, getString(R.string.editor_update_book_successful), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+
+        }
+
+
+
+
+
+
 
     }
 
