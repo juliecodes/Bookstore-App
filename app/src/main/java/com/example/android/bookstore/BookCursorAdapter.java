@@ -63,27 +63,23 @@ public class BookCursorAdapter extends CursorAdapter {
         //Find individual views that we want to modify in the list item layout
         TextView nameTextView = (TextView) view.findViewById(R.id.list_item_name);
         TextView summaryTextView = (TextView) view.findViewById(R.id.list_item_summary);
+        TextView quantityTextView = (TextView) view.findViewById(R.id.list_item_quantity);
 
         // Find the columns of book attributes that we're interested in
         int nameColumnIndex = cursor.getColumnIndex(BookContract.BookEntry.COLUMN_BOOK_PRODUCT_NAME);
         int authorColumnIndex = cursor.getColumnIndex(BookContract.BookEntry.COLUMN_BOOK_AUTHOR);
-
+        int quantityColumnIndex = cursor.getColumnIndex(BookContract.BookEntry.COLUMN_BOOK_QUANTITY);
 
         // Read the book attributes from the Cursor for the current book
         String bookName = cursor.getString(nameColumnIndex);
         String bookAuthor = cursor.getString(authorColumnIndex);
+        int bookQuantity = cursor.getInt(quantityColumnIndex);
 
-
-        // If the pet breed is empty string or null, then use some default text
-        // that says "Unknown breed", so the TextView isn't blank.
-       /* if (TextUtils.isEmpty(bookPrice)) {
-            bookPrice = context.getString(R.string.unknown_price);
-        } */
 
         // Update the TextViews with the attributes for the current book
         nameTextView.setText(bookName);
         summaryTextView.setText(bookAuthor);
-
+        quantityTextView.setText(bookQuantity);
 
 
 
