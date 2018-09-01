@@ -16,10 +16,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.util.Log;
+import android.widget.Toast;
 
 
 import com.example.android.bookstore.data.BookDbHelper;
@@ -34,10 +37,14 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
 
     BookCursorAdapter mCursorAdapter;
 
+    int bookNumber;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalog);
+
+
 
         // Setup FAB to open EditorActivity
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -184,4 +191,35 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
         // Callback called when the data needs to be deleted
         mCursorAdapter.swapCursor(null);
     }
+
+
+    /**
+     * This method is called when the minus button is clicked.
+     */
+    public void saleButtonClick (View view) {
+
+        TextView quantityTextViewText = (TextView) findViewById(R.id.list_item_quantity);
+        bookNumber = Integer.parseInt(quantityTextViewText + "");
+        bookNumber = bookNumber - 1;
+
+        if (bookNumber < 0) {
+            bookNumber = 0;
+            // Show an error message as a toast
+            Toast.makeText(this, "quantity cannot be less than 0", Toast.LENGTH_SHORT).show();
+            // Exit this method early because there's nothing left to do
+            return;
+        }
+        displayQuantity(bookNumber);
+    }
+
+
+    /**
+     * This method displays the given quantity value on the screen.
+     */
+    private void displayQuantity(int dispNum) {
+        TextView quantityTextView = (TextView) findViewById(R.id.list_item_quantity);
+        quantityTextView.setText("" + dispNum);
+    }
+
+
 }
