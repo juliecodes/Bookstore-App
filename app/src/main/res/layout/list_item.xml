@@ -66,5 +66,7 @@ android:layout_gravity="center"    >
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
 android:layout_gravity="center"
-        android:text="Sale"/>
+        android:text="Sale"
+        android:focusable="false"
+        />
 </LinearLayout>

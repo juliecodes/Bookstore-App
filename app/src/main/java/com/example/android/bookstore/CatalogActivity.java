@@ -173,6 +173,7 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
                 BookEntry._ID,
                 BookEntry.COLUMN_BOOK_PRODUCT_NAME,
                 BookEntry.COLUMN_BOOK_AUTHOR,
+                BookEntry.COLUMN_BOOK_QUANTITY
 
         };
 
