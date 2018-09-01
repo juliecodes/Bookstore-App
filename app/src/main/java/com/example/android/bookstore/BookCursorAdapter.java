@@ -73,7 +73,7 @@ public class BookCursorAdapter extends CursorAdapter {
         // Read the book attributes from the Cursor for the current book
         String bookName = cursor.getString(nameColumnIndex);
         String bookAuthor = cursor.getString(authorColumnIndex);
-        int bookQuantity = cursor.getInt(quantityColumnIndex);
+        String bookQuantity = cursor.getString(quantityColumnIndex);
 
 
         // Update the TextViews with the attributes for the current book

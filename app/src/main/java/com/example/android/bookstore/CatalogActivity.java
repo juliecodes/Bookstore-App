@@ -22,7 +22,6 @@ import android.widget.SimpleCursorAdapter;
 import android.util.Log;
 
 
-
 import com.example.android.bookstore.data.BookDbHelper;
 import com.example.android.bookstore.data.BookContract.BookEntry;
 
@@ -51,7 +50,6 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
         });
 
 
-
         // Find the ListView which will be populated with the pet data
         ListView bookListView = (ListView) findViewById(R.id.list);
         // Find and set empty view on the ListView, so that it only shows when the list has 0 items.
@@ -63,7 +61,6 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
         // There is no pet data yet (until the loader finishes) so pass in null for the Cursor.
         mCursorAdapter = new BookCursorAdapter(this, null);
         bookListView.setAdapter(mCursorAdapter);
-
 
 
         // setup the onclick listener
@@ -94,10 +91,6 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
         getLoaderManager().initLoader(BOOK_LOADER, null, this);
 
     }
-
-
-
-
 
 
     /**
@@ -139,10 +132,6 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
     }
 
 
-
-
-
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // User clicked on a menu option in the app bar overflow menu
@@ -152,7 +141,6 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
                 // Do nothing for now
 
                 insertBook();
-
 
 
                 return true;
