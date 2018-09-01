@@ -29,6 +29,28 @@
             android:textSize="13sp" />
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/list_item_label_qty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/list_item_quantity"
+        android:layout_marginRight="8dp"
+        android:text="Qty:"
+        android:textSize="14sp"
+        android:layout_centerVertical="true"
+        />
+    <TextView
+        android:id="@+id/list_item_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+android:layout_toLeftOf="@id/button_sale"
+        android:layout_marginRight="18dp"
+        android:text="8"
+        android:textSize="24sp"
+        android:layout_centerVertical="true"
+        />
+
+
     <Button
         android:id="@+id/button_sale"
         android:layout_width="wrap_content"
