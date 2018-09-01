@@ -197,9 +197,11 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
      * This method is called when the minus button is clicked.
      */
     public void saleButtonClick (View view) {
-
+        // LinearLayout parentRow = (LinearLayout) view.getParent();
         TextView quantityTextViewText = (TextView) findViewById(R.id.list_item_quantity);
-        bookNumber = Integer.parseInt(quantityTextViewText + "");
+
+        String quantityString = quantityTextViewText.getText().toString();
+        bookNumber = Integer.parseInt(quantityString);
         bookNumber = bookNumber - 1;
 
         if (bookNumber < 0) {
@@ -209,17 +211,17 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
             // Exit this method early because there's nothing left to do
             return;
         }
-        displayQuantity(bookNumber);
+        quantityTextViewText.setText(String.valueOf(bookNumber));
     }
 
 
     /**
      * This method displays the given quantity value on the screen.
      */
-    private void displayQuantity(int dispNum) {
+   /* private void displayQuantity(int dispNum) {
         TextView quantityTextView = (TextView) findViewById(R.id.list_item_quantity);
         quantityTextView.setText("" + dispNum);
-    }
+    } */
 
 
 }
