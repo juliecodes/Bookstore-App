@@ -130,6 +130,9 @@
             android:layout_weight="2"
             android:orientation="vertical">
 
+
+
+
             <!-- Name field -->
             <EditText
                 android:id="@+id/edit_quantity"
@@ -137,6 +140,23 @@
 
                 android:hint="@string/hint_quantity"
                 android:inputType="number" />
+
+            <!-- Button Wrap -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
