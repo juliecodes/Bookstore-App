@@ -198,6 +198,10 @@
                 style="@style/EditorFieldStyle"
                 android:hint="@string/hint_supplier_phone"
                 android:inputType="phone" />
+            <!-- Button to Call -->
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </LinearLayout>
 
