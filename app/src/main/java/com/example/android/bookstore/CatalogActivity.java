@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -64,7 +65,7 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
         mCursorAdapter = new BookCursorAdapter(this, null);
         bookListView.setAdapter(mCursorAdapter);
 
-
+        // LinearLayout bookListViewWrap = (LinearLayout) findViewById(R.id.list_item_click);
 
         // setup the onclick listener
         bookListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
