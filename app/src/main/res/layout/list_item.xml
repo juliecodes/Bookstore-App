@@ -66,5 +66,6 @@
         android:layout_centerVertical="true"
         android:text="Sale"
         android:onClick="saleButtonClick"
+        android:focusable="false"
         />
 </RelativeLayout>

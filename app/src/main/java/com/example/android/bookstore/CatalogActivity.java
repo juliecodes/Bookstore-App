@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -197,8 +198,8 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
      * This method is called when the minus button is clicked.
      */
     public void saleButtonClick (View view) {
-        // LinearLayout parentRow = (LinearLayout) view.getParent();
-        TextView quantityTextViewText = (TextView) findViewById(R.id.list_item_quantity);
+         RelativeLayout parentRow = (RelativeLayout) view.getParent();
+        TextView quantityTextViewText = (TextView) parentRow.findViewById(R.id.list_item_quantity);
 
         String quantityString = quantityTextViewText.getText().toString();
         bookNumber = Integer.parseInt(quantityString);
@@ -212,16 +213,11 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
             return;
         }
         quantityTextViewText.setText(String.valueOf(bookNumber));
+
     }
 
 
-    /**
-     * This method displays the given quantity value on the screen.
-     */
-   /* private void displayQuantity(int dispNum) {
-        TextView quantityTextView = (TextView) findViewById(R.id.list_item_quantity);
-        quantityTextView.setText("" + dispNum);
-    } */
+
 
 
 }
