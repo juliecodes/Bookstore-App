@@ -149,6 +149,7 @@
                 >
 
                 <Button
+                    android:id="@+id/button_less"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -156,6 +157,7 @@
                     android:textSize="18sp" />
 
                 <Button
+                    android:id="@+id/button_more"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -200,6 +202,7 @@
                 android:inputType="phone" />
             <!-- Button to Call -->
             <Button
+                android:id="@+id/button_order"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Order from Supplier" />
