@@ -1,7 +1,9 @@
 package com.example.android.bookstore;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,18 +93,27 @@ public class BookCursorAdapter extends CursorAdapter {
         saleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int bookQuantityColIndex = cursor.getInt(cursor.getColumnIndex(BookEntry.COLUMN_BOOK_QUANTITY));
+
+                //int bookQuantityColIndex = cursor.getInt(cursor.getColumnIndex(BookContract.BookEntry.COLUMN_BOOK_QUANTITY));
+                int bookQuantityColIndex = cursor.getColumnIndex(BookContract.BookEntry.COLUMN_BOOK_QUANTITY);
                 String currentBookQuantityString = cursor.getString(bookQuantityColIndex);
                 int currentBookQuantityNumb = Integer.valueOf(currentBookQuantityString);
 
-                currentBookQuantityNumb = currentBookQuantityNumb - 1;
+                currentBookQuantityNumb -= 1;
+                Log.i("BookCursorAdapter", "current book qty: " + currentBookQuantityNumb);
+
+
                 if (currentBookQuantityNumb < 0) {
                     currentBookQuantityNumb = 0;
                     // Toast.makeText(BookCursorAdapter.this, "quantity cannot be less than 0", Toast.LENGTH_SHORT).show();
-                return;
+                    Log.i("BookCursorAdapter", "inside the if statement below 0");
+
+                    return;
                 }
 
-
+                ContentValues currentValues = new ContentValues();
+                currentValues.put(BookEntry.COLUMN_BOOK_QUANTITY, currentBookQuantityNumb);
+                Log.i("BookCursorAdapter", "updated the book quantity");
             }
         });
 
