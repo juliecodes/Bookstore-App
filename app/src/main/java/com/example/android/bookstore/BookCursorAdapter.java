@@ -8,11 +8,15 @@ import android.view.ViewGroup;
 import android.text.TextUtils;
 
 
-        import android.widget.CursorAdapter;
+import android.widget.Button;
+import android.widget.CursorAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.android.bookstore.data.BookContract;
 import com.example.android.bookstore.data.BookContract.BookEntry;
+import com.example.android.bookstore.data.BookDbHelper;
+import com.example.android.bookstore.data.BookProvider;
 
 import org.w3c.dom.Text;
 
@@ -58,7 +62,7 @@ public class BookCursorAdapter extends CursorAdapter {
      *                correct row.
      */
     @Override
-    public void bindView(View view, Context context, Cursor cursor) {
+    public void bindView(View view, Context context, final Cursor cursor) {
 
         //Find individual views that we want to modify in the list item layout
         TextView nameTextView = (TextView) view.findViewById(R.id.list_item_name);
@@ -80,6 +84,28 @@ public class BookCursorAdapter extends CursorAdapter {
         nameTextView.setText(bookName);
         summaryTextView.setText(bookAuthor);
         quantityTextView.setText(bookQuantity);
+
+
+        Button saleButton = view.findViewById(R.id.button_sale);
+
+        saleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int bookQuantityColIndex = cursor.getInt(cursor.getColumnIndex(BookEntry.COLUMN_BOOK_QUANTITY));
+                String currentBookQuantityString = cursor.getString(bookQuantityColIndex);
+                int currentBookQuantityNumb = Integer.valueOf(currentBookQuantityString);
+
+                currentBookQuantityNumb = currentBookQuantityNumb - 1;
+                if (currentBookQuantityNumb < 0) {
+                    currentBookQuantityNumb = 0;
+                    // Toast.makeText(BookCursorAdapter.this, "quantity cannot be less than 0", Toast.LENGTH_SHORT).show();
+                return;
+                }
+
+
+            }
+        });
+
 
 
 

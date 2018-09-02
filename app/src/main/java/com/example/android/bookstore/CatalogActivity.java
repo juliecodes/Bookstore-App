@@ -197,7 +197,7 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
     /**
      * This method is called when the minus button is clicked.
      */
-    public void saleButtonClick (View view) {
+    /* public void saleButtonClick (View view) {
          RelativeLayout parentRow = (RelativeLayout) view.getParent();
         TextView quantityTextViewText = (TextView) parentRow.findViewById(R.id.list_item_quantity);
 
@@ -214,7 +214,7 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
         }
         quantityTextViewText.setText(String.valueOf(bookNumber));
 
-    }
+    } */
 
 
 
