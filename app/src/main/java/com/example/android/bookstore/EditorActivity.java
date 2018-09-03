@@ -148,12 +148,16 @@ public class EditorActivity extends AppCompatActivity implements
             public void onClick(View v) {
 
                String currentBookQtyString = mQuantityEditText.toString().trim();
-               int currentBookQty = Integer.valueOf(currentBookQtyString);
+                Log.i("EditorActivity", "currentBookQtyString: " + currentBookQtyString);
+
+                int currentBookQty = Integer.valueOf(currentBookQtyString);
+                Log.i("EditorActivity", "currentBookQty: " + currentBookQty);
+
                 currentBookQty = currentBookQty - 1;
                 if (currentBookQty < 0) {
                     currentBookQty = 0;
                     Toast.makeText(EditorActivity.this, "quantity cannot be less than 0", Toast.LENGTH_SHORT).show();
-                    Log.i("BookCursorAdapter", "inside the if statement below 0");
+                    Log.i("EditorActivity", "inside the if statement below 0");
 
                     return;
                 }
