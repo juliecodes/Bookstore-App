@@ -147,7 +147,7 @@ public class EditorActivity extends AppCompatActivity implements
             @Override
             public void onClick(View v) {
 
-               String currentBookQtyString = mQuantityEditText.toString().trim();
+               String currentBookQtyString = mQuantityEditText.getText().toString().trim();
                 Log.i("EditorActivity", "currentBookQtyString: " + currentBookQtyString);
 
                 int currentBookQty = Integer.valueOf(currentBookQtyString);
@@ -162,7 +162,7 @@ public class EditorActivity extends AppCompatActivity implements
                     return;
                 }
 
-               mQuantityEditText.setText(currentBookQty);
+               mQuantityEditText.setText(String.valueOf(currentBookQty));
 
             }
         });
