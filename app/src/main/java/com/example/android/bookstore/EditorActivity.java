@@ -252,12 +252,12 @@ public class EditorActivity extends AppCompatActivity implements
         }  else if (mCurrentBookUri == null && (TextUtils.isEmpty(nameString) || TextUtils.isEmpty(authorString) || TextUtils.isEmpty(priceString) ||
                 TextUtils.isEmpty(quantityString) || TextUtils.isEmpty(supplierNameString) || TextUtils.isEmpty(supplierPhoneString))) {
             // send toast that not all values are filled in
-            Toast.makeText(this, getString(R.string.editor_insert_book_blank_fields), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.editor_insert_book_blank_fields), Toast.LENGTH_LONG).show();
 
         } else if (mCurrentBookUri != null && (TextUtils.isEmpty(nameString) || TextUtils.isEmpty(authorString) || TextUtils.isEmpty(priceString) ||
                 TextUtils.isEmpty(quantityString) || TextUtils.isEmpty(supplierNameString) || TextUtils.isEmpty(supplierPhoneString))) {
             // send toast that not all values are filled in
-            Toast.makeText(this, getString(R.string.editor_insert_book_blank_fields), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.editor_insert_book_blank_fields), Toast.LENGTH_LONG).show();
 
         }
 
