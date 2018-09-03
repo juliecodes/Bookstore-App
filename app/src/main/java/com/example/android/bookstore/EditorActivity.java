@@ -168,6 +168,25 @@ public class EditorActivity extends AppCompatActivity implements
         });
 
 
+        Button moreButton = (Button) findViewById(R.id.button_more);
+
+        moreButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String currentBookQtyString = mQuantityEditText.getText().toString().trim();
+                Log.i("EditorActivity", "currentBookQtyString: " + currentBookQtyString);
+
+                int currentBookQty = Integer.valueOf(currentBookQtyString);
+                Log.i("EditorActivity", "currentBookQty: " + currentBookQty);
+
+                currentBookQty = currentBookQty + 1;
+
+                mQuantityEditText.setText(String.valueOf(currentBookQty));
+
+            }
+        });
+
 
     }
 
