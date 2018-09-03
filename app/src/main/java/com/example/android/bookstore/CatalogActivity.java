@@ -30,6 +30,11 @@ import com.example.android.bookstore.data.BookContract;
 import com.example.android.bookstore.data.BookDbHelper;
 import com.example.android.bookstore.data.BookContract.BookEntry;
 
+
+/**
+ *  Resource: https://stackoverflow.com/questions/48350406/updating-the-sqlite-db-with-a-button-click-on-listview
+ * */
+
 /**
  * Displays list of books that were entered and stored in the app.
  */

@@ -27,6 +27,12 @@ import com.example.android.bookstore.data.BookProvider;
 
 import org.w3c.dom.Text;
 
+
+
+/**
+ *  Resource: https://stackoverflow.com/questions/48350406/updating-the-sqlite-db-with-a-button-click-on-listview
+ * */
+
 /**
  * {@link BookCursorAdapter} is an adapter for a list or grid view
  * that uses a {@link Cursor} of pet data as its data source. This adapter knows
