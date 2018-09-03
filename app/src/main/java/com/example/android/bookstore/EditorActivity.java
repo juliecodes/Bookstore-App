@@ -16,6 +16,7 @@
 package com.example.android.bookstore;
 
 import android.app.AlertDialog;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -25,12 +26,14 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -40,7 +43,7 @@ import android.content.Loader;
 import android.database.Cursor;
 
 
-
+import com.example.android.bookstore.data.BookContract;
 import com.example.android.bookstore.data.BookDbHelper;
 import com.example.android.bookstore.data.BookContract.BookEntry;
 import com.example.android.bookstore.data.BookDbHelper;
@@ -115,7 +118,7 @@ public class EditorActivity extends AppCompatActivity implements
             // Otherwise this is an existing book, so change app bar to say "Edit Book"
             setTitle(getString(R.string.editor_activity_title_edit_book));
 
-            // Initialize a loader to read the pet data from the database
+            // Initialize a loader to read the book data from the database
             // and display the current values in the editor
             getLoaderManager().initLoader(EXISTING_BOOK_LOADER, null, this);
         }
@@ -135,6 +138,46 @@ public class EditorActivity extends AppCompatActivity implements
         mQuantityEditText.setOnTouchListener(mTouchListener);
         mSupplierNameEditText.setOnTouchListener(mTouchListener);
         mSupplierPhoneEditText.setOnTouchListener(mTouchListener);
+
+
+
+        Button lessButton = (Button) findViewById(R.id.button_less);
+
+        lessButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // Initialize a loader to read the pet data from the database
+                // and display the current values in the editor
+                getLoaderManager().initLoader(EXISTING_BOOK_LOADER, null, EditorActivity.this);
+                //CatalogActivity catalogActivity = (CatalogActivity) context;
+                // catalogActivity.decreaseCount( Integer.valueOf(bookId), Integer.valueOf(bookQuantity));
+
+                ContentValues currentValues = new ContentValues();
+                String currentBookIdString = currentValues.get(BookContract.BookEntry._ID).toString().trim();
+                String currentBookQuantityString = currentValues.get(BookContract.BookEntry.COLUMN_BOOK_QUANTITY).toString().trim();
+
+                int currentBookId = Integer.valueOf(currentBookIdString);
+                int currentBookQty = Integer.valueOf(currentBookQuantityString);
+                currentBookQty = currentBookQty - 1;
+                if (currentBookQty < 0) {
+                    currentBookQty = 0;
+                    Toast.makeText(EditorActivity.this, "quantity cannot be less than 0", Toast.LENGTH_SHORT).show();
+                    Log.i("BookCursorAdapter", "inside the if statement below 0");
+
+                    return;
+                }
+
+                currentValues.put(BookContract.BookEntry.COLUMN_BOOK_QUANTITY, currentBookQty);
+
+                Uri updateDecUri = ContentUris.withAppendedId(BookContract.BookEntry.CONTENT_URI, currentBookId);
+
+                int rowsAffected = getContentResolver().update(updateDecUri, currentValues,null, null);
+
+
+            }
+        });
+
 
 
     }
@@ -466,5 +509,7 @@ public class EditorActivity extends AppCompatActivity implements
         // Close the activity
         finish();
     }
+
+
 
 }
