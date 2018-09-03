@@ -150,6 +150,7 @@ public class EditorActivity extends AppCompatActivity implements
          * */
 
         Button lessButton = (Button) findViewById(R.id.button_less);
+        lessButton.setOnTouchListener(mTouchListener);
 
         lessButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -180,6 +181,7 @@ public class EditorActivity extends AppCompatActivity implements
          * */
 
         Button moreButton = (Button) findViewById(R.id.button_more);
+        moreButton.setOnTouchListener(mTouchListener);
 
         moreButton.setOnClickListener(new View.OnClickListener() {
             @Override
