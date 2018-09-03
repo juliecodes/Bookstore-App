@@ -61,7 +61,7 @@ public class EditorActivity extends AppCompatActivity implements
 
     /** Identifier for the book data loader */
     private static final int EXISTING_BOOK_LOADER = 0;
-    /** Content URI for the existing book (null if it's a new pet) */
+    /** Content URI for the existing book (null if it's a new book) */
     private Uri mCurrentBookUri;
 
     /** EditText field to enter the book's name */
@@ -87,7 +87,7 @@ public class EditorActivity extends AppCompatActivity implements
     private boolean mBookHasChanged = false;
     /**
      * OnTouchListener that listens for any user touches on a View, implying that they are modifying
-     * the view, and we change the mPetHasChanged boolean to true.
+     * the view, and we change the mBookHasChanged boolean to true.
      */
     private View.OnTouchListener mTouchListener = new View.OnTouchListener() {
         @Override
@@ -117,7 +117,7 @@ public class EditorActivity extends AppCompatActivity implements
             setTitle(getString(R.string.editor_activity_title_new_book));
 
             // Invalidate the options menu, so the "Delete" menu option can be hidden.
-            // (It doesn't make sense to delete a pet that hasn't been created yet.)
+            // (It doesn't make sense to delete a book that hasn't been created yet.)
             invalidateOptionsMenu();
         } else {
             // Otherwise this is an existing book, so change app bar to say "Edit Book"
@@ -230,7 +230,7 @@ public class EditorActivity extends AppCompatActivity implements
 
     }
 
-// Get user input from editor and save pet into database.
+// Get user input from editor and save book into database.
 
     private void saveBook() {
         String nameString = mNameEditText.getText().toString().trim();
@@ -240,11 +240,11 @@ public class EditorActivity extends AppCompatActivity implements
         String supplierNameString = mSupplierNameEditText.getText().toString().trim();
         String supplierPhoneString = mSupplierPhoneEditText.getText().toString().trim();
 
-        // Check if this is supposed to be a new pet
+        // Check if this is supposed to be a new book
         // and check if all the fields in the editor are blank
         if (mCurrentBookUri == null &&   TextUtils.isEmpty(nameString) && TextUtils.isEmpty(authorString) && TextUtils.isEmpty(priceString) &&
                 TextUtils.isEmpty(quantityString) && TextUtils.isEmpty(supplierNameString) && TextUtils.isEmpty(supplierPhoneString) ) {
-            // Since no fields were modified, we can return early without creating a new pet.
+            // Since no fields were modified, we can return early without creating a new book.
             // No need to create ContentValues and no need to do any ContentProvider operations.
             return;
         }  else if (mCurrentBookUri == null && (TextUtils.isEmpty(nameString) || TextUtils.isEmpty(authorString) || TextUtils.isEmpty(priceString) ||
@@ -261,7 +261,7 @@ public class EditorActivity extends AppCompatActivity implements
 
         else {
             // Create a ContentValues object where column names are the keys,
-            // and Toto's pet attributes are the values.
+            // and these book attributes are the values.
             ContentValues values = new ContentValues();
             values.put(BookEntry.COLUMN_BOOK_PRODUCT_NAME, nameString);
             values.put(BookEntry.COLUMN_BOOK_AUTHOR, authorString);
@@ -292,7 +292,7 @@ public class EditorActivity extends AppCompatActivity implements
                 }
 
             } else {
-                // Otherwise this is an EXITING pet, so update the pet with content URI: mCurrentBookUri
+                // Otherwise this is an EXITING book, so update the book with content URI: mCurrentBookUri
                 // and pass in the new ContentValues. Pass in null for the selection and selection args
                 // because mCurrentBookUri will already identify the current row in the database that
                 // we want to modify.
@@ -336,7 +336,7 @@ public class EditorActivity extends AppCompatActivity implements
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
-        // If this is a new pet, hide the "Delete" menu item.
+        // If this is a new book, hide the "Delete" menu item.
         if (mCurrentBookUri == null) {
             MenuItem menuItem = menu.findItem(R.id.action_delete);
             menuItem.setVisible(false);
@@ -389,7 +389,7 @@ public class EditorActivity extends AppCompatActivity implements
 
     @Override
     public void onBackPressed() {
-        // If the pet hasn't changed, continue with handling back button press
+        // If the book hasn't changed, continue with handling back button press
         if (!mBookHasChanged) {
             super.onBackPressed();
             return;
@@ -413,8 +413,8 @@ public class EditorActivity extends AppCompatActivity implements
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-        // Since the editor shows all pet attributes, define a projection that contains
-        // all columns from the pet table
+        // Since the editor shows all book attributes, define a projection that contains
+        // all columns from the book table
         String[] projection = {
                 BookEntry._ID,
                 BookEntry.COLUMN_BOOK_PRODUCT_NAME,
@@ -425,7 +425,7 @@ public class EditorActivity extends AppCompatActivity implements
                 BookEntry.COLUMN_BOOK_SUPPLIER_PHONE };
         // This loader will execute the ContentProvider's query method on a background thread
         return new CursorLoader(this,   // Parent activity context
-                mCurrentBookUri,         // Query the content URI for the current pet
+                mCurrentBookUri,         // Query the content URI for the current book
                 projection,             // Columns to include in the resulting Cursor
                 null,                   // No selection clause
                 null,                   // No selection arguments
@@ -441,7 +441,7 @@ public class EditorActivity extends AppCompatActivity implements
         }
         // Proceed with moving to the first row of the cursor and reading data from it
         // (This should be the only row in the cursor)
-        if (cursor.moveToFirst()) {  // Find the columns of pet attributes that we're interested in
+        if (cursor.moveToFirst()) {  // Find the columns of book attributes that we're interested in
             int nameColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_PRODUCT_NAME);
             int authorColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_AUTHOR);
             int priceColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_PRICE);
@@ -495,7 +495,7 @@ public class EditorActivity extends AppCompatActivity implements
         builder.setNegativeButton(R.string.keep_editing, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 // User clicked the "Keep editing" button, so dismiss the dialog
-                // and continue editing the pet.
+                // and continue editing the book.
                 if (dialog != null) {
                     dialog.dismiss();
                 }
@@ -507,7 +507,7 @@ public class EditorActivity extends AppCompatActivity implements
     }
 
     /**
-     * Prompt the user to confirm that they want to delete this pet.
+     * Prompt the user to confirm that they want to delete this book.
      */
     private void showDeleteConfirmationDialog() {
         // Create an AlertDialog.Builder and set the message, and click listeners
@@ -516,14 +516,14 @@ public class EditorActivity extends AppCompatActivity implements
         builder.setMessage(R.string.delete_dialog_msg);
         builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                // User clicked the "Delete" button, so delete the pet.
+                // User clicked the "Delete" button, so delete the book.
                 deleteBook();
             }
         });
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 // User clicked the "Cancel" button, so dismiss the dialog
-                // and continue editing the pet.
+                // and continue editing the book.
                 if (dialog != null) {
                     dialog.dismiss();
                 }
@@ -534,14 +534,14 @@ public class EditorActivity extends AppCompatActivity implements
         alertDialog.show();
     }
     /**
-     * Perform the deletion of the pet in the database.
+     * Perform the deletion of the book in the database.
      */
     private void deleteBook() {
-        // Only perform the delete if this is an existing pet.
+        // Only perform the delete if this is an existing book.
         if (mCurrentBookUri != null) {
-            // Call the ContentResolver to delete the pet at the given content URI.
-            // Pass in null for the selection and selection args because the mCurrentPetUri
-            // content URI already identifies the pet that we want.
+            // Call the ContentResolver to delete the book at the given content URI.
+            // Pass in null for the selection and selection args because the mCurrentBookUri
+            // content URI already identifies the book that we want.
             int rowsDeleted = getContentResolver().delete(mCurrentBookUri, null, null);
             // Show a toast message depending on whether or not the delete was successful.
             if (rowsDeleted == 0) {

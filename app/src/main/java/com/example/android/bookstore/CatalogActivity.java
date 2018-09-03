@@ -64,15 +64,15 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
         });
 
 
-        // Find the ListView which will be populated with the pet data
+        // Find the ListView which will be populated with the book data
         ListView bookListView = (ListView) findViewById(R.id.list);
         // Find and set empty view on the ListView, so that it only shows when the list has 0 items.
         View emptyView = findViewById(R.id.empty_view);
         bookListView.setEmptyView(emptyView);
 
 
-        // Setup an Adapter to create a list item for each row of pet data in the Cursor.
-        // There is no pet data yet (until the loader finishes) so pass in null for the Cursor.
+        // Setup an Adapter to create a list item for each row of book data in the Cursor.
+        // There is no book data yet (until the loader finishes) so pass in null for the Cursor.
         mCursorAdapter = new BookCursorAdapter(this, null);
         bookListView.setAdapter(mCursorAdapter);
 
@@ -94,7 +94,7 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
                 // Set the URI on the data field of the intent
                 intent.setData(currentBookUri);
 
-                // Launch the  {@link EditorActivity} to display the data for the current pet.
+                // Launch the  {@link EditorActivity} to display the data for the current book.
                 startActivity(intent);
 
             }
@@ -108,11 +108,11 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
 
 
     /**
-     * Helper method to insert hardcoded pet data into the database. For debugging purposes only.
+     * Helper method to insert hardcoded book data into the database. For debugging purposes only.
      */
     private void insertBook() {
         // Create a ContentValues object where column names are the keys,
-        // and Toto's pet attributes are the values.
+        // and these book attributes are the values.
         ContentValues values = new ContentValues();
         values.put(BookEntry.COLUMN_BOOK_PRODUCT_NAME, "Monsoon Mansion");
         values.put(BookEntry.COLUMN_BOOK_AUTHOR, "Cinelle Barnes");
@@ -122,14 +122,14 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
         values.put(BookEntry.COLUMN_BOOK_SUPPLIER_PHONE, "(202) 555-5555");
 
         // Insert a new row for Toto into the provider using the ContentResolver.
-        // Use the {@link PetEntry#CONTENT_URI} to indicate that we want to insert
-        // into the pets database table.
+        // Use the {@link BookEntry#CONTENT_URI} to indicate that we want to insert
+        // into the books database table.
         // Receive the new content URI that will allow us to access Toto's data in the future.
         Uri newUri = getContentResolver().insert(BookEntry.CONTENT_URI, values);
     }
 
     /**
-     * Helper method to delete all pets in the database.
+     * Helper method to delete all books in the database.
      */
     private void deleteAllBooks() {
         int rowsDeleted = getContentResolver().delete(BookEntry.CONTENT_URI, null, null);
@@ -189,7 +189,7 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        // Update {@link PetCursorAdapter} with this new cursor containing updated pet data
+        // Update {@link BookCursorAdapter} with this new cursor containing updated book data
         mCursorAdapter.swapCursor(data);
     }
 
