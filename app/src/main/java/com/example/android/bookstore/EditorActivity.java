@@ -49,7 +49,7 @@ import com.example.android.bookstore.data.BookContract.BookEntry;
 import com.example.android.bookstore.data.BookDbHelper;
 
 
-/** 
+/**
  *  Resource: https://developer.android.com/guide/components/intents-common#DialPhone
  * */
 
@@ -59,9 +59,9 @@ import com.example.android.bookstore.data.BookDbHelper;
 public class EditorActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor>  {
 
-    /** Identifier for the pet data loader */
+    /** Identifier for the book data loader */
     private static final int EXISTING_BOOK_LOADER = 0;
-    /** Content URI for the existing pet (null if it's a new pet) */
+    /** Content URI for the existing book (null if it's a new pet) */
     private Uri mCurrentBookUri;
 
     /** EditText field to enter the book's name */
@@ -145,6 +145,9 @@ public class EditorActivity extends AppCompatActivity implements
         mSupplierPhoneEditText.setOnTouchListener(mTouchListener);
 
 
+        /**
+         *  To decrease quantity in Editor Activity
+         * */
 
         Button lessButton = (Button) findViewById(R.id.button_less);
 
@@ -172,6 +175,9 @@ public class EditorActivity extends AppCompatActivity implements
             }
         });
 
+        /**
+         *  To increase quantity in Editor Activity
+         * */
 
         Button moreButton = (Button) findViewById(R.id.button_more);
 
@@ -192,6 +198,9 @@ public class EditorActivity extends AppCompatActivity implements
             }
         });
 
+        /**
+         *  To call supplier phone in Editor Activity
+         * */
 
         Button orderButton = (Button) findViewById(R.id.button_order);
 
