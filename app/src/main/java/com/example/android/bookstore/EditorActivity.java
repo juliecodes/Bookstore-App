@@ -147,18 +147,8 @@ public class EditorActivity extends AppCompatActivity implements
             @Override
             public void onClick(View v) {
 
-                // Initialize a loader to read the pet data from the database
-                // and display the current values in the editor
-                getLoaderManager().initLoader(EXISTING_BOOK_LOADER, null, EditorActivity.this);
-                //CatalogActivity catalogActivity = (CatalogActivity) context;
-                // catalogActivity.decreaseCount( Integer.valueOf(bookId), Integer.valueOf(bookQuantity));
-
-                ContentValues currentValues = new ContentValues();
-                String currentBookIdString = currentValues.get(BookContract.BookEntry._ID).toString().trim();
-                String currentBookQuantityString = currentValues.get(BookContract.BookEntry.COLUMN_BOOK_QUANTITY).toString().trim();
-
-                int currentBookId = Integer.valueOf(currentBookIdString);
-                int currentBookQty = Integer.valueOf(currentBookQuantityString);
+               String currentBookQtyString = mQuantityEditText.toString().trim();
+               int currentBookQty = Integer.valueOf(currentBookQtyString);
                 currentBookQty = currentBookQty - 1;
                 if (currentBookQty < 0) {
                     currentBookQty = 0;
@@ -168,12 +158,7 @@ public class EditorActivity extends AppCompatActivity implements
                     return;
                 }
 
-                currentValues.put(BookContract.BookEntry.COLUMN_BOOK_QUANTITY, currentBookQty);
-
-                Uri updateDecUri = ContentUris.withAppendedId(BookContract.BookEntry.CONTENT_URI, currentBookId);
-
-                int rowsAffected = getContentResolver().update(updateDecUri, currentValues,null, null);
-
+               mQuantityEditText.setText(currentBookQty);
 
             }
         });
