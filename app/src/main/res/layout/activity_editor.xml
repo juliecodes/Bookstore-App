@@ -9,10 +9,16 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 --><!-- Layout for the editor -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+<LinearLayout
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="@dimen/activity_margin"
     tools:context=".EditorActivity">
@@ -210,3 +216,4 @@
     </LinearLayout>
 
 </LinearLayout>
+</ScrollView>
