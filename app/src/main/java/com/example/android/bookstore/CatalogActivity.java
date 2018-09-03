@@ -26,6 +26,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 
+import com.example.android.bookstore.data.BookContract;
 import com.example.android.bookstore.data.BookDbHelper;
 import com.example.android.bookstore.data.BookContract.BookEntry;
 
@@ -216,7 +217,27 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
 
     } */
 
+    // Decrease count by one
+    public void decreaseCount(int columnId, int quantity){
 
+        quantity = quantity -1;
+
+        if (quantity < 0) {
+            quantity = 0;
+             Toast.makeText(this, "quantity cannot be less than 0", Toast.LENGTH_SHORT).show();
+            Log.i("BookCursorAdapter", "inside the if statement below 0");
+
+            return;
+        }
+
+        ContentValues values = new ContentValues();
+        values.put(BookContract.BookEntry.COLUMN_BOOK_QUANTITY, quantity);
+
+        Uri updateUri = ContentUris.withAppendedId(BookContract.BookEntry.CONTENT_URI, columnId);
+
+        int rowsAffected = getContentResolver().update(updateUri, values,null, null);
+
+    }
 
 
 

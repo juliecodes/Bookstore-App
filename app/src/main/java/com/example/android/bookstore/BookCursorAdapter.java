@@ -1,8 +1,10 @@
 package com.example.android.bookstore;
 
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,7 +66,7 @@ public class BookCursorAdapter extends CursorAdapter {
      *                correct row.
      */
     @Override
-    public void bindView(View view, Context context, final Cursor cursor) {
+    public void bindView(View view, final Context context, final Cursor cursor) {
 
         //Find individual views that we want to modify in the list item layout
         TextView nameTextView = (TextView) view.findViewById(R.id.list_item_name);
@@ -94,31 +96,29 @@ public class BookCursorAdapter extends CursorAdapter {
             @Override
             public void onClick(View v) {
 
-                //int bookQuantityColIndex = cursor.getInt(cursor.getColumnIndex(BookContract.BookEntry.COLUMN_BOOK_QUANTITY));
+                int bookIdColIndex = cursor.getColumnIndex(BookContract.BookEntry._ID);
                 int bookQuantityColIndex = cursor.getColumnIndex(BookContract.BookEntry.COLUMN_BOOK_QUANTITY);
+                String currentBookIdString = cursor.getString(bookIdColIndex);
                 String currentBookQuantityString = cursor.getString(bookQuantityColIndex);
-                int currentBookQuantityNumb = Integer.valueOf(currentBookQuantityString);
 
-                currentBookQuantityNumb -= 1;
-                Log.i("BookCursorAdapter", "current book qty: " + currentBookQuantityNumb);
+                CatalogActivity catalogActivity = (CatalogActivity) context;
+                catalogActivity.decreaseCount( Integer.valueOf(currentBookIdString), Integer.valueOf(currentBookQuantityString));
 
 
-                if (currentBookQuantityNumb < 0) {
-                    currentBookQuantityNumb = 0;
-                    // Toast.makeText(BookCursorAdapter.this, "quantity cannot be less than 0", Toast.LENGTH_SHORT).show();
-                    Log.i("BookCursorAdapter", "inside the if statement below 0");
-
-                    return;
-                }
-
-                ContentValues currentValues = new ContentValues();
-                currentValues.put(BookEntry.COLUMN_BOOK_QUANTITY, currentBookQuantityNumb);
-                Log.i("BookCursorAdapter", "updated the book quantity");
+             
             }
         });
 
 
 
 
+
+
     }
+
+
+
+
+
+
 }
