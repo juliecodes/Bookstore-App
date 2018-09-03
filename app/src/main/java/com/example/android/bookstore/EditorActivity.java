@@ -48,6 +48,11 @@ import com.example.android.bookstore.data.BookDbHelper;
 import com.example.android.bookstore.data.BookContract.BookEntry;
 import com.example.android.bookstore.data.BookDbHelper;
 
+
+/** 
+ *  Resource: https://developer.android.com/guide/components/intents-common#DialPhone
+ * */
+
 /**
  * Allows user to create a new book or edit an existing one.
  */
@@ -183,6 +188,32 @@ public class EditorActivity extends AppCompatActivity implements
                 currentBookQty = currentBookQty + 1;
 
                 mQuantityEditText.setText(String.valueOf(currentBookQty));
+
+            }
+        });
+
+
+        Button orderButton = (Button) findViewById(R.id.button_order);
+
+        orderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String currentBookSupplierPhone = mSupplierPhoneEditText.getText().toString().trim();
+                Log.i("EditorActivity", "currentBookSupplierPhone: " + currentBookSupplierPhone);
+
+
+
+                // send intent to phone call
+
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:" + currentBookSupplierPhone));
+
+
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
+
 
             }
         });

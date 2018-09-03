@@ -40,6 +40,8 @@
             android:name=".data.BookProvider"
             android:authorities="com.example.android.bookstore"
             android:exported="false" />
-    </application>
 
+
+    </application>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 </manifest>
