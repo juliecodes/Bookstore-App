@@ -198,24 +198,7 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
     /**
      * This method is called when the minus button is clicked.
      */
-    /* public void saleButtonClick (View view) {
-         RelativeLayout parentRow = (RelativeLayout) view.getParent();
-        TextView quantityTextViewText = (TextView) parentRow.findViewById(R.id.list_item_quantity);
 
-        String quantityString = quantityTextViewText.getText().toString();
-        bookNumber = Integer.parseInt(quantityString);
-        bookNumber = bookNumber - 1;
-
-        if (bookNumber < 0) {
-            bookNumber = 0;
-            // Show an error message as a toast
-            Toast.makeText(this, "quantity cannot be less than 0", Toast.LENGTH_SHORT).show();
-            // Exit this method early because there's nothing left to do
-            return;
-        }
-        quantityTextViewText.setText(String.valueOf(bookNumber));
-
-    } */
 
     // Decrease count by one
     public void decreaseCount(int columnId, int quantity){
