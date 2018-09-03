@@ -212,7 +212,7 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
 
         if (quantity < 0) {
             quantity = 0;
-             Toast.makeText(this, "quantity cannot be less than 0", Toast.LENGTH_SHORT).show();
+             Toast.makeText(this, getString(R.string.less_than_zero), Toast.LENGTH_SHORT).show();
             Log.i("BookCursorAdapter", "inside the if statement below 0");
 
             return;

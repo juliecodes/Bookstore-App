@@ -28,7 +28,7 @@ import com.example.android.bookstore.data.BookContract.BookEntry;
 
 
 /**
- * Database helper for Pets app. Manages database creation and version management.
+ * Database helper for Bookstore app. Manages database creation and version management.
  */
 public class BookDbHelper extends SQLiteOpenHelper {
     public static final String LOG_TAG = BookDbHelper.class.getSimpleName();
@@ -51,7 +51,7 @@ public class BookDbHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // Create a String that contains the SQL statement to create the bookstore table
+        // Create a String that contains the SQL statement to create the books table
         String SQL_CREATE_BOOKS_TABLE =  "CREATE TABLE " + BookEntry.TABLE_NAME + " ("
                 + BookEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + BookEntry.COLUMN_BOOK_PRODUCT_NAME + " TEXT NOT NULL, "

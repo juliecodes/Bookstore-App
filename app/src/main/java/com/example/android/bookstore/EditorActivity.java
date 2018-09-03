@@ -164,7 +164,7 @@ public class EditorActivity extends AppCompatActivity implements
                 currentBookQty = currentBookQty - 1;
                 if (currentBookQty < 0) {
                     currentBookQty = 0;
-                    Toast.makeText(EditorActivity.this, "quantity cannot be less than 0", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditorActivity.this, getString(R.string.less_than_zero), Toast.LENGTH_SHORT).show();
                     Log.i("EditorActivity", "inside the if statement below 0");
 
                     return;

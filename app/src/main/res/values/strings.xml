@@ -64,14 +64,7 @@
     <!-- Units for weight of the pet (kilograms) [CHAR LIMIT=5] -->
     <string name="unit_money">$</string>
 
-    <!-- Label for dropdown menu option if the pet's gender is unknown [CHAR LIMIT=20] -->
-    <string name="gender_unknown">Unknown</string>
 
-    <!-- Label for dropdown menu option if the pet is male [CHAR LIMIT=20] -->
-    <string name="gender_male">Male</string>
-
-    <!-- Label for dropdown menu option if the pet is female [CHAR LIMIT=20] -->
-    <string name="gender_female">Female</string>
 
     <!-- Toast message in editor when new book has been successfully inserted [CHAR LIMIT=NONE] -->
     <string name="editor_insert_book_successful">Book saved</string>
@@ -97,9 +90,9 @@
     <!-- Dialog button text for the option to keep editing the current pet [CHAR LIMIT=20] -->
     <string name="keep_editing">Keep Editing</string>
 
-    <!-- Title text for the empty view, which describes the empty dog house image [CHAR LIMIT=50] -->
-    <string name="empty_view_title_text">It\'s a bit lonely here...</string>
-    <!-- Subtitle text for the empty view that prompts the user to add a pet [CHAR LIMIT=50] -->
+    <!-- Title text for the empty view, which describes the empty bookshelf image [CHAR LIMIT=50] -->
+    <string name="empty_view_title_text">It\'s a bit empty here...</string>
+    <!-- Subtitle text for the empty view that prompts the user to add a book [CHAR LIMIT=50] -->
     <string name="empty_view_subtitle_text">Get started by adding a book</string>
 
     <!-- Toast message in editor when current pet was successfully deleted [CHAR LIMIT=NONE] -->
@@ -113,8 +106,7 @@
     <!-- Dialog button text for the option to cancel deletion of the current pet [CHAR LIMIT=20] -->
     <string name="cancel">Cancel</string>
 
-    <!-- Label for the pet's breed if the breed is unknown [CHAR LIMIT=20] -->
-    <string name="unknown_price">Unknown price</string>
+   <string name="less_than_zero">Quantity cannot be less than 0</string>
 
 
 </resources>
