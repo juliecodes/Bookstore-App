@@ -10,7 +10,18 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<!-- Layout for the list of bookstore -->
+
+<!--
+ Bookshelf image created by me, and consists of images from vecteezy.com
+ https://www.vecteezy.com/vector-art/86927-3d-shelves-vectors
+https://www.vecteezy.com/vector-art/160714-sketchy-style-typographic-halloween-labels
+
+FAB and app icons from this image:
+https://www.vecteezy.com/vector-art/81899-icon-book-vectors
+
+ -->
+
+<!-- Layout for the list of books -->
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
