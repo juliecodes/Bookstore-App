@@ -80,7 +80,7 @@ public class BookCursorAdapter extends CursorAdapter {
 
         //Find individual views that we want to modify in the list item layout
         TextView nameTextView = (TextView) view.findViewById(R.id.list_item_name);
-        TextView summaryTextView = (TextView) view.findViewById(R.id.list_item_summary);
+        TextView summaryTextView = (TextView) view.findViewById(R.id.list_item_author);
         TextView quantityTextView = (TextView) view.findViewById(R.id.list_item_quantity);
         TextView priceTextView = (TextView) view.findViewById(R.id.list_item_price);
 
