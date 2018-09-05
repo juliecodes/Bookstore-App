@@ -83,25 +83,27 @@ public class BookCursorAdapter extends CursorAdapter {
         TextView nameTextView = (TextView) view.findViewById(R.id.list_item_name);
         TextView summaryTextView = (TextView) view.findViewById(R.id.list_item_summary);
         TextView quantityTextView = (TextView) view.findViewById(R.id.list_item_quantity);
+        TextView priceTextView = (TextView) view.findViewById(R.id.list_item_price);
 
         // Find the columns of book attributes that we're interested in
         int idColumnIndex = cursor.getColumnIndex(BookContract.BookEntry._ID);
         int nameColumnIndex = cursor.getColumnIndex(BookContract.BookEntry.COLUMN_BOOK_PRODUCT_NAME);
         int authorColumnIndex = cursor.getColumnIndex(BookContract.BookEntry.COLUMN_BOOK_AUTHOR);
         int quantityColumnIndex = cursor.getColumnIndex(BookContract.BookEntry.COLUMN_BOOK_QUANTITY);
+        int priceColumnIndex = cursor.getColumnIndex(BookContract.BookEntry.COLUMN_BOOK_PRICE);
 
         // Read the book attributes from the Cursor for the current book
         final String bookId = cursor.getString(idColumnIndex);
         String bookName = cursor.getString(nameColumnIndex);
         String bookAuthor = cursor.getString(authorColumnIndex);
         final String bookQuantity = cursor.getString(quantityColumnIndex);
-
+        String bookPrice = cursor.getString(priceColumnIndex);
 
         // Update the TextViews with the attributes for the current book
         nameTextView.setText(bookName);
         summaryTextView.setText(bookAuthor);
         quantityTextView.setText(bookQuantity);
-
+        priceTextView.setText(bookPrice);
 
          Button saleButton = view.findViewById(R.id.button_sale);
 

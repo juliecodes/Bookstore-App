@@ -174,7 +174,8 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
                 BookEntry._ID,
                 BookEntry.COLUMN_BOOK_PRODUCT_NAME,
                 BookEntry.COLUMN_BOOK_AUTHOR,
-                BookEntry.COLUMN_BOOK_QUANTITY
+                BookEntry.COLUMN_BOOK_QUANTITY,
+                BookEntry.COLUMN_BOOK_PRICE
         };
 
         //This loader will execute the ContentProvider's query method on a background thread.

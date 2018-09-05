@@ -1,8 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Layout for a single list item in the list of pets -->
-<RelativeLayout android:layout_height="wrap_content"
+<?xml version="1.0" encoding="utf-8"?><!-- Layout for a single list item in the list of pets -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:layout_height="wrap_content">
 
     <LinearLayout
 
@@ -28,35 +27,87 @@
             android:textColor="#AEB6BD"
             android:textSize="13sp" />
     </LinearLayout>
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_toLeftOf="@id/button_sale"
-    android:layout_marginRight="8dp"
-    android:orientation="vertical"
-    android:layout_centerVertical="true"
-    >
 
-
-    <TextView
-        android:id="@+id/list_item_label_qty"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Qty:"
-        android:textSize="10sp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="8dp"
+        android:layout_toLeftOf="@id/quantity_wrap"
+        android:orientation="vertical">
 
-        />
-    <TextView
-        android:id="@+id/list_item_quantity"
+        <TextView
+            android:id="@+id/list_item_label_price"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:text="Price:"
+            android:textSize="10sp"
+
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/list_item_label_dollarsign"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="2dp"
+                android:text="$"
+                android:textSize="12sp"
+
+                />
+
+            <TextView
+                android:id="@+id/list_item_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="20sp"
+
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/quantity_wrap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="8dp"
+        android:layout_toLeftOf="@id/button_sale"
+        android:orientation="vertical">
 
-        android:textSize="20sp"
 
-        />
-</LinearLayout>
+        <TextView
+            android:id="@+id/list_item_label_qty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Qty:"
+            android:textSize="10sp"
+
+            />
+
+        <TextView
+            android:id="@+id/list_item_quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+
+            android:textSize="20sp"
+
+            />
+    </LinearLayout>
 
     <Button
         android:id="@+id/button_sale"
@@ -64,7 +115,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:text="Sale"
         android:focusable="false"
-        />
+        android:text="Sale" />
 </RelativeLayout>
