@@ -16,7 +16,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
-
             android:textColor="#2B3D4D"
             android:textSize="16sp" />
 
@@ -34,7 +33,6 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center_vertical"
-
         >
 
 
@@ -53,7 +51,6 @@
                 android:layout_gravity="center"
                 android:text="Price:"
                 android:textSize="10sp"
-
                 />
 
             <LinearLayout
@@ -69,7 +66,6 @@
                     android:layout_marginRight="2dp"
                     android:text="$"
                     android:textSize="12sp"
-
                     />
 
                 <TextView
@@ -78,7 +74,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textSize="20sp"
-
                     />
 
             </LinearLayout>
@@ -103,7 +98,6 @@
                 android:layout_gravity="center"
                 android:text="Qty:"
                 android:textSize="10sp"
-
                 />
 
             <TextView
@@ -111,9 +105,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-
                 android:textSize="20sp"
-
                 />
         </LinearLayout>
 

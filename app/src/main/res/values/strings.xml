@@ -33,31 +33,32 @@
     <!-- Label for overview category of attributes in the editor [CHAR LIMIT=30] -->
     <string name="supplier_overview">Supplier</string>
 
-    <!-- Label for gender information in the editor [CHAR LIMIT=30] -->
     <string name="category_book_name">Book Name</string>
     <string name="category_book_author">Author</string>
 
 
-    <!-- Label for measurement information in the editor [CHAR LIMIT=30] -->
+    <!-- Label for quantity information in the editor [CHAR LIMIT=30] -->
     <string name="category_quantity">Quantity</string>
 
-    <!-- Label for measurement information in the editor [CHAR LIMIT=30] -->
+    <!-- Label for price information in the editor [CHAR LIMIT=30] -->
     <string name="category_price">Price</string>
 
     <!-- Text hint for name field in the editor [CHAR LIMIT=30] -->
     <string name="hint_product_name">Book Name</string>
 
-    <!-- Text hint for name field in the editor [CHAR LIMIT=30] -->
+    <!-- Text hint for supplier name field in the editor [CHAR LIMIT=30] -->
     <string name="hint_supplier_name">Supplier Name</string>
+
     <string name="hint_author">Author</string>
-    <!-- Text hint for breed field in the editor [CHAR LIMIT=30] -->
+
+    <!-- Text hint for supplier phone field in the editor [CHAR LIMIT=30] -->
     <string name="hint_supplier_phone">Supplier Phone</string>
 
-    <!-- Text hint for name field in the editor [CHAR LIMIT=30] -->
+    <!-- Text hint for price field in the editor [CHAR LIMIT=30] -->
     <string name="hint_book_price">Price</string>
 
 
-    <!-- Text hint for name field in the editor [CHAR LIMIT=30] -->
+    <!-- Text hint for quantity field in the editor [CHAR LIMIT=30] -->
     <string name="hint_quantity">Quantity</string>
 
     <!-- Units for money of the book (dollars) [CHAR LIMIT=5] -->
