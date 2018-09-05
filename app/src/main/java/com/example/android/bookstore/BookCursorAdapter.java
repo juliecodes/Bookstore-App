@@ -1,32 +1,16 @@
 package com.example.android.bookstore;
 
-import android.content.ContentUris;
-import android.content.ContentValues;
+
 import android.content.Context;
-import android.content.CursorLoader;
 import android.database.Cursor;
-import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.text.TextUtils;
-
-
 import android.widget.Button;
 import android.widget.CursorAdapter;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.android.bookstore.data.BookContract;
-import com.example.android.bookstore.data.BookContract.BookEntry;
-import com.example.android.bookstore.data.BookDbHelper;
-import com.example.android.bookstore.data.BookProvider;
-
-import org.w3c.dom.Text;
-
 
 
 /**

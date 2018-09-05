@@ -7,7 +7,6 @@ import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -16,18 +15,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.util.Log;
 import android.widget.Toast;
 
 
 import com.example.android.bookstore.data.BookContract;
-import com.example.android.bookstore.data.BookDbHelper;
 import com.example.android.bookstore.data.BookContract.BookEntry;
 
 
