@@ -107,5 +107,12 @@
 
     <string name="less_than_zero">Quantity cannot be less than 0</string>
 
+    <string name="list_item_labelstring_qty">Qty:</string>
+    <string name="list_item_labelstring_price">Price:</string>
+
+    <string name="button_text_sale">Sale</string>
+    <string name="button_text_order_supplier">Order from Supplier</string>
+    <string name="button_text_subtract">-</string>
+    <string name="button_text_add">+</string>
 
 </resources>

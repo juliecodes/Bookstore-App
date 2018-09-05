@@ -49,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Price:"
+                android:text="@string/list_item_labelstring_price"
                 android:textSize="10sp"
                 />
 
@@ -96,7 +96,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Qty:"
+                android:text="@string/list_item_labelstring_qty"
                 android:textSize="10sp"
                 />
 
@@ -116,7 +116,8 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:focusable="false"
-            android:text="Sale" />
+            android:text="@string/button_text_sale"
+            android:layout_marginRight="5dp" />
 
     </RelativeLayout>
 </LinearLayout>
