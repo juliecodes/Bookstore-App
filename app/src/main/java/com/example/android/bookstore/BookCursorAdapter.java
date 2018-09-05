@@ -78,7 +78,6 @@ public class BookCursorAdapter extends CursorAdapter {
     public void bindView(View view, final Context context, final Cursor cursor) {
 
 
-
         //Find individual views that we want to modify in the list item layout
         TextView nameTextView = (TextView) view.findViewById(R.id.list_item_name);
         TextView summaryTextView = (TextView) view.findViewById(R.id.list_item_summary);
@@ -110,28 +109,13 @@ public class BookCursorAdapter extends CursorAdapter {
         saleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 CatalogActivity catalogActivity = (CatalogActivity) context;
                 catalogActivity.decreaseCount( Integer.valueOf(bookId), Integer.valueOf(bookQuantity));
-
-
-
             }
         });
 
 
-
-
-
-
-
-
     }
-
-
-
-
 
 
 }

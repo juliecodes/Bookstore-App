@@ -50,14 +50,14 @@ import com.example.android.bookstore.data.BookDbHelper;
 
 
 /**
- *  Resource: https://developer.android.com/guide/components/intents-common#DialPhone
- * */
+ * Resource: https://developer.android.com/guide/components/intents-common#DialPhone
+ */
 
 /**
  * Allows user to create a new book or edit an existing one.
  */
 public class EditorActivity extends AppCompatActivity implements
-        LoaderManager.LoaderCallbacks<Cursor>  {
+        LoaderManager.LoaderCallbacks<Cursor> {
 
     /** Identifier for the book data loader */
     private static final int EXISTING_BOOK_LOADER = 0;
@@ -96,7 +96,6 @@ public class EditorActivity extends AppCompatActivity implements
             return false;
         }
     };
-
 
 
     @Override
@@ -156,7 +155,7 @@ public class EditorActivity extends AppCompatActivity implements
             @Override
             public void onClick(View v) {
 
-               String currentBookQtyString = mQuantityEditText.getText().toString().trim();
+                String currentBookQtyString = mQuantityEditText.getText().toString().trim();
                 Log.i("EditorActivity", "currentBookQtyString: " + currentBookQtyString);
 
                 int currentBookQty = Integer.valueOf(currentBookQtyString);
@@ -171,7 +170,7 @@ public class EditorActivity extends AppCompatActivity implements
                     return;
                 }
 
-               mQuantityEditText.setText(String.valueOf(currentBookQty));
+                mQuantityEditText.setText(String.valueOf(currentBookQty));
 
             }
         });
@@ -214,7 +213,6 @@ public class EditorActivity extends AppCompatActivity implements
                 Log.i("EditorActivity", "currentBookSupplierPhone: " + currentBookSupplierPhone);
 
 
-
                 // send intent to phone call
 
                 Intent intent = new Intent(Intent.ACTION_DIAL);
@@ -244,12 +242,12 @@ public class EditorActivity extends AppCompatActivity implements
 
         // Check if this is supposed to be a new book
         // and check if all the fields in the editor are blank
-        if (mCurrentBookUri == null &&   TextUtils.isEmpty(nameString) && TextUtils.isEmpty(authorString) && TextUtils.isEmpty(priceString) &&
-                TextUtils.isEmpty(quantityString) && TextUtils.isEmpty(supplierNameString) && TextUtils.isEmpty(supplierPhoneString) ) {
+        if (mCurrentBookUri == null && TextUtils.isEmpty(nameString) && TextUtils.isEmpty(authorString) && TextUtils.isEmpty(priceString) &&
+                TextUtils.isEmpty(quantityString) && TextUtils.isEmpty(supplierNameString) && TextUtils.isEmpty(supplierPhoneString)) {
             // Since no fields were modified, we can return early without creating a new book.
             // No need to create ContentValues and no need to do any ContentProvider operations.
             return;
-        }  else if (mCurrentBookUri == null && (TextUtils.isEmpty(nameString) || TextUtils.isEmpty(authorString) || TextUtils.isEmpty(priceString) ||
+        } else if (mCurrentBookUri == null && (TextUtils.isEmpty(nameString) || TextUtils.isEmpty(authorString) || TextUtils.isEmpty(priceString) ||
                 TextUtils.isEmpty(quantityString) || TextUtils.isEmpty(supplierNameString) || TextUtils.isEmpty(supplierPhoneString))) {
             // send toast that not all values are filled in
             Toast.makeText(this, getString(R.string.editor_insert_book_blank_fields), Toast.LENGTH_LONG).show();
@@ -259,9 +257,7 @@ public class EditorActivity extends AppCompatActivity implements
             // send toast that not all values are filled in
             Toast.makeText(this, getString(R.string.editor_insert_book_blank_fields), Toast.LENGTH_LONG).show();
 
-        }
-
-        else {
+        } else {
             // Create a ContentValues object where column names are the keys,
             // and these book attributes are the values.
             ContentValues values = new ContentValues();
@@ -273,15 +269,13 @@ public class EditorActivity extends AppCompatActivity implements
             values.put(BookEntry.COLUMN_BOOK_SUPPLIER_PHONE, supplierPhoneString);
 
 
-
             // Determine if this is a new or existing book by checking if mCurrentBookUri is null or not
 
 
-            if(mCurrentBookUri == null) {
+            if (mCurrentBookUri == null) {
                 // This is a NEW book, so insert a new book into the provider,
                 // returning the content URI for the new book.
                 Uri newUri = getContentResolver().insert(BookEntry.CONTENT_URI, values);
-
 
 
                 // Show a toast message depending on whether or not the insertion was successful.
@@ -309,16 +303,7 @@ public class EditorActivity extends AppCompatActivity implements
                     Toast.makeText(this, getString(R.string.editor_update_book_successful), Toast.LENGTH_SHORT).show();
                 }
             }
-
-
         }
-
-
-
-
-
-
-
     }
 
 
@@ -424,7 +409,7 @@ public class EditorActivity extends AppCompatActivity implements
                 BookEntry.COLUMN_BOOK_PRICE,
                 BookEntry.COLUMN_BOOK_QUANTITY,
                 BookEntry.COLUMN_BOOK_SUPPLIER_NAME,
-                BookEntry.COLUMN_BOOK_SUPPLIER_PHONE };
+                BookEntry.COLUMN_BOOK_SUPPLIER_PHONE};
         // This loader will execute the ContentProvider's query method on a background thread
         return new CursorLoader(this,   // Parent activity context
                 mCurrentBookUri,         // Query the content URI for the current book
@@ -469,15 +454,16 @@ public class EditorActivity extends AppCompatActivity implements
 
         }
     }
+
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-            // If the loader is invalidated, clear out all the data from the input fields.
-            mNameEditText.setText("");
-            mAuthorEditText.setText("");
-            mPriceEditText.setText("");
-            mQuantityEditText.setText("");
-            mSupplierNameEditText.setText("");
-            mSupplierPhoneEditText.setText("");
+        // If the loader is invalidated, clear out all the data from the input fields.
+        mNameEditText.setText("");
+        mAuthorEditText.setText("");
+        mPriceEditText.setText("");
+        mQuantityEditText.setText("");
+        mSupplierNameEditText.setText("");
+        mSupplierPhoneEditText.setText("");
     }
 
     /**
@@ -535,6 +521,7 @@ public class EditorActivity extends AppCompatActivity implements
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
+
     /**
      * Perform the deletion of the book in the database.
      */
@@ -559,7 +546,6 @@ public class EditorActivity extends AppCompatActivity implements
         // Close the activity
         finish();
     }
-
 
 
 }
