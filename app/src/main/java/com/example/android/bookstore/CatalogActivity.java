@@ -25,8 +25,8 @@ import com.example.android.bookstore.data.BookContract.BookEntry;
 
 
 /**
- *  Resource: https://stackoverflow.com/questions/48350406/updating-the-sqlite-db-with-a-button-click-on-listview
- * */
+ * Resource: https://stackoverflow.com/questions/48350406/updating-the-sqlite-db-with-a-button-click-on-listview
+ */
 
 /**
  * Displays list of books that were entered and stored in the app.
@@ -43,7 +43,6 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalog);
-
 
 
         // Setup FAB to open EditorActivity
@@ -200,13 +199,13 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
 
 
     // Decrease count by one
-    public void decreaseCount(int columnId, int quantity){
+    public void decreaseCount(int columnId, int quantity) {
 
-        quantity = quantity -1;
+        quantity = quantity - 1;
 
         if (quantity < 0) {
             quantity = 0;
-             Toast.makeText(this, getString(R.string.less_than_zero), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.less_than_zero), Toast.LENGTH_SHORT).show();
             Log.i("BookCursorAdapter", "inside the if statement below 0");
 
             return;
@@ -217,10 +216,9 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
 
         Uri updateUri = ContentUris.withAppendedId(BookContract.BookEntry.CONTENT_URI, columnId);
 
-        int rowsAffected = getContentResolver().update(updateUri, values,null, null);
+        int rowsAffected = getContentResolver().update(updateUri, values, null, null);
 
     }
-
 
 
 }

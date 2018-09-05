@@ -18,10 +18,14 @@ import com.example.android.bookstore.data.BookContract.BookEntry;
 public class BookProvider extends ContentProvider {
 
 
-    /** URI matcher code for the content URI for the books table */
+    /**
+     * URI matcher code for the content URI for the books table
+     */
     private static final int BOOKS = 100;
 
-    /** URI matcher code for the content URI for a single book in the books table */
+    /**
+     * URI matcher code for the content URI for a single book in the books table
+     */
     private static final int BOOK_ID = 101;
 
     /**
@@ -42,11 +46,12 @@ public class BookProvider extends ContentProvider {
     }
 
 
-
-    /** Tag for the log messages */
+    /**
+     * Tag for the log messages
+     */
     public static final String LOG_TAG = BookProvider.class.getSimpleName();
 
-/* Database helper object */
+    /* Database helper object */
     private BookDbHelper mDbHelper;
 
     /**
@@ -54,7 +59,7 @@ public class BookProvider extends ContentProvider {
      */
     @Override
     public boolean onCreate() {
-       mDbHelper = new BookDbHelper(getContext());
+        mDbHelper = new BookDbHelper(getContext());
 
         return true;
     }
@@ -92,7 +97,7 @@ public class BookProvider extends ContentProvider {
                 // arguments that will fill in the "?". Since we have 1 question mark in the
                 // selection, we have 1 String in the selection arguments' String array.
                 selection = BookEntry._ID + "=?";
-                selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
+                selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
 
                 // This will perform a query on the books table where the _id equals 3 to return a
                 // Cursor containing that row of the table.
@@ -110,6 +115,7 @@ public class BookProvider extends ContentProvider {
         // Return the cursor
         return cursor;
     }
+
     /**
      * Insert new data into the provider with the given ContentValues.
      */
@@ -129,7 +135,6 @@ public class BookProvider extends ContentProvider {
      * for that specific row in the database.
      */
     private Uri insertBook(Uri uri, ContentValues values) {
-
 
 
         // Check that the name is not null
@@ -174,9 +179,9 @@ public class BookProvider extends ContentProvider {
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
         // Insert a new book into the books database table with the given ContentValues
-       long id = database.insert(BookEntry.TABLE_NAME, null, values);
+        long id = database.insert(BookEntry.TABLE_NAME, null, values);
 
-       // If the ID is -1, then the insertion failed. Log an error and return null.
+        // If the ID is -1, then the insertion failed. Log an error and return null.
         if (id == -1) {
             Log.e(LOG_TAG, "Failed to insert row for " + uri);
             return null;
@@ -205,7 +210,7 @@ public class BookProvider extends ContentProvider {
                 // so we know which row to update. Selection will be "_id=?" and selection
                 // arguments will be a String array containing the actual ID.
                 selection = BookEntry._ID + "=?";
-                selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
+                selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
                 return updateBook(uri, contentValues, selection, selectionArgs);
             default:
                 throw new IllegalArgumentException("Update is not supported for " + uri);
@@ -241,7 +246,8 @@ public class BookProvider extends ContentProvider {
         if (values.containsKey(BookEntry.COLUMN_BOOK_PRICE)) {
             // Check that the quantity is greater than or equal to 0 kg
             Integer price = values.getAsInteger(BookEntry.COLUMN_BOOK_PRICE);
-            if ((price == null) || (price < 0)) {  throw new IllegalArgumentException("Book requires valid price");
+            if ((price == null) || (price < 0)) {
+                throw new IllegalArgumentException("Book requires valid price");
             }
         }
 
@@ -251,7 +257,8 @@ public class BookProvider extends ContentProvider {
         if (values.containsKey(BookEntry.COLUMN_BOOK_QUANTITY)) {
             // Check that the quantity is greater than or equal to 0 kg
             Integer quantity = values.getAsInteger(BookEntry.COLUMN_BOOK_QUANTITY);
-            if ((quantity == null) || (quantity < 0)) {  throw new IllegalArgumentException("Book requires valid quantity");
+            if ((quantity == null) || (quantity < 0)) {
+                throw new IllegalArgumentException("Book requires valid quantity");
             }
         }
 
@@ -293,8 +300,6 @@ public class BookProvider extends ContentProvider {
         return rowsUpdated;
 
 
-
-
     }
 
 
@@ -319,7 +324,7 @@ public class BookProvider extends ContentProvider {
             case BOOK_ID:
                 // Delete a single row given by the ID in the URI
                 selection = BookEntry._ID + "=?";
-                selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
+                selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
                 rowsDeleted = database.delete(BookEntry.TABLE_NAME, selection, selectionArgs);
                 break;
             default:

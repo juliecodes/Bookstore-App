@@ -50,31 +50,49 @@ import com.example.android.bookstore.data.BookContract.BookEntry;
 public class EditorActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
-    /** Identifier for the book data loader */
+    /**
+     * Identifier for the book data loader
+     */
     private static final int EXISTING_BOOK_LOADER = 0;
-    /** Content URI for the existing book (null if it's a new book) */
+    /**
+     * Content URI for the existing book (null if it's a new book)
+     */
     private Uri mCurrentBookUri;
 
-    /** EditText field to enter the book's name */
+    /**
+     * EditText field to enter the book's name
+     */
     private EditText mNameEditText;
 
-    /** EditText field to enter the book's price */
+    /**
+     * EditText field to enter the book's price
+     */
     private EditText mAuthorEditText;
 
 
-    /** EditText field to enter the book's price */
+    /**
+     * EditText field to enter the book's price
+     */
     private EditText mPriceEditText;
 
-    /** EditText field to enter the book's quantity */
+    /**
+     * EditText field to enter the book's quantity
+     */
     private EditText mQuantityEditText;
 
-    /** EditText field to enter the book's supplier name */
+    /**
+     * EditText field to enter the book's supplier name
+     */
     private EditText mSupplierNameEditText;
 
-    /** EditText field to enter the book's supplier phone */
+    /**
+     * EditText field to enter the book's supplier phone
+     */
     private EditText mSupplierPhoneEditText;
 
-    /** Boolean flag that keeps track of whether the book has been edited (true) or not (false) */
+    /**
+     * Boolean flag that keeps track of whether the book has been edited (true) or not (false)
+     */
     private boolean mBookHasChanged = false;
     /**
      * OnTouchListener that listens for any user touches on a View, implying that they are modifying

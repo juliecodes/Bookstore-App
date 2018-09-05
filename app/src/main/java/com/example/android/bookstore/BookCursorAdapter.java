@@ -14,8 +14,8 @@ import com.example.android.bookstore.data.BookContract;
 
 
 /**
- *  Resource: https://stackoverflow.com/questions/48350406/updating-the-sqlite-db-with-a-button-click-on-listview
- * */
+ * Resource: https://stackoverflow.com/questions/48350406/updating-the-sqlite-db-with-a-button-click-on-listview
+ */
 
 /**
  * {@link BookCursorAdapter} is an adapter for a list or grid view
@@ -88,13 +88,13 @@ public class BookCursorAdapter extends CursorAdapter {
         quantityTextView.setText(bookQuantity);
         priceTextView.setText(bookPrice);
 
-         Button saleButton = view.findViewById(R.id.button_sale);
+        Button saleButton = view.findViewById(R.id.button_sale);
 
         saleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CatalogActivity catalogActivity = (CatalogActivity) context;
-                catalogActivity.decreaseCount( Integer.valueOf(bookId), Integer.valueOf(bookQuantity));
+                catalogActivity.decreaseCount(Integer.valueOf(bookId), Integer.valueOf(bookQuantity));
             }
         });
 

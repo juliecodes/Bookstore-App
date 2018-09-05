@@ -9,7 +9,8 @@ public final class BookContract {
 
     // To prevent someone from accidentally instantiating the contract class,
     // give it an empty constructor.
-    private BookContract() {}
+    private BookContract() {
+    }
 
     /**
      * The "Content authority" is a name for the entire content provider, similar to the
@@ -32,15 +33,13 @@ public final class BookContract {
     public static final String PATH_BOOKS = "books";
 
 
-
-
     /* Inner class that defines the table contents of the location table */
     public static final class BookEntry implements BaseColumns {
 
-        /** The content URI to access the book data in the provider */
+        /**
+         * The content URI to access the book data in the provider
+         */
         public static final Uri CONTENT_URI = Uri.withAppendedPath(BASE_CONTENT_URI, PATH_BOOKS);
-
-
 
 
         /**
@@ -55,7 +54,6 @@ public final class BookContract {
                 ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_BOOKS;
 
 
-
         // Table name
         public static final String TABLE_NAME = "books";
 
@@ -68,9 +66,7 @@ public final class BookContract {
         public static final String COLUMN_BOOK_SUPPLIER_PHONE = "supplier_phone";
 
 
-
-
-}
+    }
 
 
 }
